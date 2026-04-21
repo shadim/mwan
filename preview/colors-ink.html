@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--bg); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+  .sw { width: 90px; }
+  .chip {
+    height: 56px; border-radius: 8px; box-shadow: var(--hairline);
+  }
+  .lbl { font-family: var(--font-latin-body); font-size: 11px; color: var(--fg-3); margin-top: 6px; letter-spacing: .02em; }
+  .val { font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); }
+  h3 { font-family: var(--font-arabic-display); color: var(--fg-accent); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 10px; font-weight: 500; }
+  .block { margin-bottom: 18px; }
+</style>
+</head>
+<body>
+  <div class="block">
+    <h3>Ink · Surface</h3>
+    <div class="row">
+      <div class="sw"><div class="chip" style="background:#0E0E0E"></div><div class="lbl">ink-900</div><div class="val">#0E0E0E</div></div>
+      <div class="sw"><div class="chip" style="background:#141414"></div><div class="lbl">ink-800</div><div class="val">#141414</div></div>
+      <div class="sw"><div class="chip" style="background:#1C1C1C"></div><div class="lbl">ink-700</div><div class="val">#1C1C1C</div></div>
+      <div class="sw"><div class="chip" style="background:#242424"></div><div class="lbl">ink-600</div><div class="val">#242424</div></div>
+      <div class="sw"><div class="chip" style="background:#2E2E2E"></div><div class="lbl">ink-500</div><div class="val">#2E2E2E</div></div>
+      <div class="sw"><div class="chip" style="background:#B8B8B8"></div><div class="lbl">ink-200</div><div class="val">#B8B8B8</div></div>
+      <div class="sw"><div class="chip" style="background:#E6E6E6"></div><div class="lbl">ink-100</div><div class="val">#E6E6E6</div></div>
+    </div>
+  </div>
+</body>
+</html>

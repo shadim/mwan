@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 24px; background: var(--bg); display:flex; gap: 14px; flex-wrap: wrap; }
+  .box { width: 76px; height: 76px; background: var(--ink-700); box-shadow: var(--hairline); display:flex; align-items:flex-end; justify-content:center; padding-bottom: 6px; font-family: var(--font-mono); font-size:10px; color: var(--fg-3); }
+  .r-sm { border-radius: 4px; }
+  .r-md { border-radius: 8px; }
+  .r-lg { border-radius: 14px; }
+  .r-xl { border-radius: 20px; }
+  .r-2xl { border-radius: 28px; }
+  .r-pill { border-radius: 999px; }
+  .r-arch { border-radius: 50% 50% 8px 8px / 40% 40% 8px 8px; }
+</style>
+</head>
+<body>
+  <div class="box r-sm">4</div>
+  <div class="box r-md">8</div>
+  <div class="box r-lg">14</div>
+  <div class="box r-xl">20</div>
+  <div class="box r-2xl">28</div>
+  <div class="box r-pill">pill</div>
+  <div class="box r-arch">arch</div>
+</body>
+</html>

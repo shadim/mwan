@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--bg); display:flex; flex-direction: column; gap: 12px; }
+  label { font-size: 13px; color: var(--fg-3); font-family: var(--font-arabic-body); }
+  .field {
+    width: 100%; padding: 12px 14px; background: var(--ink-800); color: var(--fg-1);
+    border: 1px solid var(--border); border-radius: 8px; font-family: var(--font-arabic-body); font-size: 15px;
+    transition: all var(--dur-fast) var(--ease-standard);
+  }
+  .field:focus { outline: none; border-color: var(--gold-400); box-shadow: var(--ring-focus); }
+  .field.filled { border-color: var(--gold-500); }
+  .hint { font-size: 12px; color: var(--fg-3); margin-top: -4px; }
+  .err { font-size: 12px; color: var(--danger); margin-top: -4px; }
+  .field.invalid { border-color: var(--danger); }
+</style>
+</head>
+<body>
+  <div><label>الاسم الكامل</label><input class="field filled" value="أحمد عبد الله الأنصاري"></div>
+  <div><label>رقم الهاتف</label><input class="field" placeholder="٠٥٠ ١٢٣ ٤٥٦٧"></div>
+  <div><label>البريد الإلكتروني</label><input class="field invalid" value="ahmed@"><div class="err">أدخلوا بريداً صحيحاً</div></div>
+</body>
+</html>

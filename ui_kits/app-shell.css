@@ -1,0 +1,159 @@
+/* Mobile-first app shell shared by Manager / Teacher / Student / Parent kits.
+   Each kit designs its own screen content on top of these primitives. */
+
+@import url('../colors_and_type.css');
+
+html, body { height: 100%; }
+body { background: var(--bg); }
+
+.phone {
+  max-width: 420px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 60px rgba(0,0,0,.6);
+}
+@media (min-width: 760px) {
+  .phone { margin-top: 20px; margin-bottom: 20px; min-height: calc(100vh - 40px); border-radius: 24px; overflow: hidden; border: 1px solid var(--border); }
+}
+
+/* Top bar */
+.app-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px 12px;
+  background: var(--ink-900);
+  position: sticky; top: 0; z-index: 10;
+  border-bottom: 1px solid var(--divider);
+}
+.app-top .greeting { font-family: var(--font-arabic-body); font-size: 13px; color: var(--fg-3); }
+.app-top .who { font-family: var(--font-arabic-display); font-size: 17px; color: var(--fg-1); font-weight: 700; margin-top: 2px; }
+.app-top .avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--gold-400); color: var(--ink-900);
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-arabic-display); font-weight: 700; font-size: 16px;
+}
+.app-top .icon-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--ink-800); box-shadow: var(--hairline);
+  display:flex; align-items:center; justify-content:center;
+  border: none; color: var(--fg-1); cursor: pointer;
+}
+
+/* Scrollable body */
+.app-body {
+  flex: 1; padding: 20px 20px 100px;
+}
+
+/* Bottom navigation */
+.app-nav {
+  position: sticky; bottom: 0; z-index: 10;
+  background: rgba(14,14,14,.92); backdrop-filter: blur(14px);
+  border-top: 1px solid var(--divider);
+  display: grid; grid-template-columns: repeat(var(--cols,4), 1fr);
+  height: 72px;
+  padding: 0 8px;
+}
+.app-nav button {
+  background: none; border: none; cursor: pointer; color: var(--fg-3);
+  display:flex; flex-direction: column; align-items:center; justify-content:center; gap: 4px;
+  font-family: var(--font-arabic-body); font-size: 11px;
+  transition: color .14s;
+}
+.app-nav button .ico { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.app-nav button.active { color: var(--gold-400); }
+.app-nav button:hover { color: var(--gold-200); }
+
+/* Section helpers */
+.sec-title { font-family: var(--font-arabic-body); font-size: 13px; font-weight: 500; color: var(--fg-3); margin: 0 0 10px; display:flex; justify-content: space-between; align-items: center; }
+.sec-title .more { font-size: 12px; color: var(--gold-400); }
+
+.card {
+  background: var(--bg-card); border-radius: 14px; padding: 16px;
+  box-shadow: var(--hairline); margin-bottom: 12px;
+}
+.card.gold-frame { box-shadow: var(--hairline-gold); }
+.card h3 { margin: 0 0 6px; font-size: 16px; color: var(--fg-1); font-family: var(--font-arabic-body); font-weight:700; }
+.card p { margin: 0; font-size: 13px; color: var(--fg-3); line-height: 1.6; }
+
+.row-item {
+  display:flex; align-items:center; gap: 12px; padding: 12px; background: var(--bg-card); border-radius: 12px; box-shadow: var(--hairline); margin-bottom: 8px;
+}
+.row-item .lead { width: 40px; height: 40px; border-radius: 50%; background: var(--ink-600); color: var(--gold-400); display:flex; align-items:center; justify-content:center; font-family: var(--font-arabic-display); font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.row-item .body { flex: 1; min-width: 0; }
+.row-item .title { font-size: 14px; color: var(--fg-1); font-weight: 500; }
+.row-item .meta { font-size: 12px; color: var(--fg-3); margin-top: 2px; }
+
+/* Hero card with girih */
+.hero-card {
+  position: relative; overflow: hidden;
+  padding: 22px 20px; border-radius: 18px;
+  background: linear-gradient(135deg, #1C1C1C 0%, #141414 100%);
+  box-shadow: var(--hairline-gold);
+  margin-bottom: 20px;
+}
+.hero-card::before {
+  content:''; position: absolute; inset: 0; opacity: .1; z-index: 0;
+  background-image: url('../../assets/pattern-girih.svg'); background-size: 90px; color: var(--gold-400);
+}
+.hero-card > * { position: relative; z-index: 1; }
+.hero-card .eyebrow { display:block; margin-bottom: 8px; }
+.hero-card h2 { font-family: var(--font-arabic-display); color: var(--fg-1); font-size: 22px; margin: 0 0 6px; }
+.hero-card p { margin: 0; color: var(--fg-3); font-size: 13px; }
+
+/* Chips */
+.chip-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 14px; }
+.chip-row::-webkit-scrollbar { display: none; }
+.chip {
+  flex-shrink: 0; padding: 8px 14px; border-radius: 999px;
+  font-size: 13px; color: var(--fg-2); background: var(--ink-700);
+  box-shadow: var(--hairline); border: none; cursor: pointer;
+  font-family: var(--font-arabic-body);
+}
+.chip.active { background: var(--gold-400); color: var(--ink-900); box-shadow: none; font-weight: 500; }
+
+/* Buttons */
+.btn { font-family: var(--font-arabic-body); padding: 12px 20px; border-radius: 10px; border:none; font-size: 14px; cursor:pointer; display:inline-flex; align-items:center; justify-content: center; gap: 8px; transition: all .14s; }
+.btn-primary { background: var(--gold-400); color: var(--ink-900); font-weight: 500; }
+.btn-primary:active { transform: scale(.97); background: var(--gold-500); }
+.btn-ghost { background: transparent; color: var(--fg-1); box-shadow: var(--hairline); }
+.btn-block { width: 100%; }
+
+/* FAB */
+.fab {
+  position: fixed; bottom: 86px; inset-inline-start: 20px;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--gold-400); color: var(--ink-900);
+  box-shadow: var(--shadow-gold);
+  display:flex; align-items:center; justify-content:center;
+  border: none; cursor: pointer; z-index: 20;
+}
+@media (min-width: 760px) {
+  .fab { position: absolute; }
+}
+
+/* Screen switcher */
+.screen { display: none; }
+.screen.active { display: block; animation: fade .25s var(--ease-enter); }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Attendance specific */
+.attendance-row {
+  display: grid; grid-template-columns: 40px 1fr auto;
+  align-items: center; gap: 12px;
+  padding: 10px 12px; background: var(--bg-card); border-radius: 10px;
+  box-shadow: var(--hairline); margin-bottom: 6px; transition: all .14s;
+}
+.attendance-row.present { box-shadow: inset 0 0 0 1px rgba(107,142,78,.45); background: rgba(107,142,78,.06); }
+.attendance-row.absent { box-shadow: inset 0 0 0 1px rgba(184,69,58,.45); background: rgba(184,69,58,.06); }
+.attendance-row.late { box-shadow: inset 0 0 0 1px rgba(201,148,74,.45); background: rgba(201,148,74,.06); }
+.att-num { width: 32px; height: 32px; border-radius: 50%; background: var(--ink-600); display:flex; align-items:center; justify-content:center; font-family: var(--font-arabic-display); font-size: 13px; color: var(--fg-2); }
+.att-name { font-size: 14px; color: var(--fg-1); }
+.att-toggle { display:flex; gap: 4px; }
+.att-toggle button { width: 28px; height: 28px; border-radius: 8px; border: none; background: var(--ink-700); color: var(--fg-3); cursor:pointer; font-size: 14px; display:flex; align-items:center; justify-content:center; font-weight: 700; }
+.att-toggle button.on-p { background: var(--success); color: white; }
+.att-toggle button.on-a { background: var(--danger); color: white; }
+.att-toggle button.on-l { background: var(--warn); color: white; }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 18px 24px; background: var(--bg); }
+  .label { font-family: var(--font-arabic-display); font-size: 10px; color: var(--fg-accent); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 10px;}
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-arabic-body); font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; }
+  .b-success { background: #1E2818; color: #9ec48a; }
+  .b-warn    { background: #2b1f0c; color: #e8b761; }
+  .b-danger  { background: #2A1616; color: #e58d85; }
+  .b-info    { background: #15202d; color: #9dbad8; }
+  .b-gold    { background: #2a2412; color: var(--gold-400); }
+  .b-neutral { background: var(--ink-700); color: var(--fg-2); }
+  .dot { width:6px; height:6px; border-radius: 999px; background: currentColor; }
+</style>
+</head>
+<body>
+  <div class="label">Badges &amp; status</div>
+  <div class="row">
+    <span class="badge b-success"><span class="dot"></span>حاضر</span>
+    <span class="badge b-warn"><span class="dot"></span>متأخر</span>
+    <span class="badge b-danger"><span class="dot"></span>غائب</span>
+    <span class="badge b-info">إشعار</span>
+    <span class="badge b-gold">مميّز</span>
+    <span class="badge b-neutral">مسودّة</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--bg); display:flex; gap: 24px; align-items: center; }
+  .tile {
+    width: 140px; height: 100px; background: var(--ink-800); border-radius: 10px;
+    display:flex; align-items: center; justify-content:center; overflow: hidden;
+    box-shadow: var(--hairline);
+  }
+  .girih-bg {
+    background-image: url('../assets/pattern-girih.svg');
+    background-size: 80px 80px;
+    background-color: var(--ink-900);
+    color: var(--gold-400);
+  }
+  .arch svg, .star svg { color: var(--gold-400); width: 56px; }
+  .label { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); margin-top: 8px; text-align:center; }
+  .stack { display:flex; flex-direction:column; align-items:center; }
+</style>
+</head>
+<body>
+  <div class="stack"><div class="tile girih-bg"></div><div class="label">girih pattern</div></div>
+  <div class="stack"><div class="tile arch"><img src="../assets/arch-mihrab.svg" style="width:50px; filter: brightness(0) saturate(100%) invert(82%) sepia(45%) saturate(430%) hue-rotate(0deg)"></div><div class="label">mihrab arch</div></div>
+  <div class="stack"><div class="tile star"><img src="../assets/star-8point.svg" style="width:56px; filter: brightness(0) saturate(100%) invert(82%) sepia(45%) saturate(430%) hue-rotate(0deg)"></div><div class="label">8-point star</div></div>
+</body>
+</html>

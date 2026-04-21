@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=420, initial-scale=1">
+<title>تطبيق الطلاب — المهاجرين والأنصار</title>
+<link rel="stylesheet" href="../app-shell.css">
+<style>
+  .app-nav { --cols: 4; }
+  .quran-card {
+    padding: 24px 20px; background: linear-gradient(135deg, #1C1C1C, #0E0E0E);
+    border-radius: 18px; margin-bottom: 16px; text-align: center; position: relative; overflow: hidden;
+    box-shadow: var(--hairline-gold);
+  }
+  .quran-card::before { content:''; position:absolute; inset:0; opacity:.1;
+    background-image: url('../../assets/pattern-girih.svg'); background-size: 80px; color: var(--gold-400); }
+  .quran-card > * { position: relative; }
+  .quran-card .verse { font-family: var(--font-arabic-quran); color: var(--gold-200); font-size: 22px; line-height: 2; margin-bottom: 10px; }
+  .quran-card .src { font-size: 11px; color: var(--fg-3); letter-spacing: .1em; }
+  .lesson { background: var(--bg-card); border-radius: 12px; padding: 14px 16px; display:flex; justify-content: space-between; box-shadow: var(--hairline); margin-bottom: 8px; }
+  .lesson .t { font-size: 14px; color: var(--fg-1); font-weight: 500; }
+  .lesson .m { font-size: 12px; color: var(--fg-3); margin-top: 2px; }
+  .lesson .time { font-family: var(--font-arabic-display); color: var(--gold-400); font-size: 13px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="app-top">
+    <div>
+      <div class="greeting">السلام عليكم</div>
+      <div class="who">محمد الأنصاري</div>
+    </div>
+    <div class="avatar">م</div>
+  </div>
+
+  <div class="app-body">
+    <div class="screen active" data-screen="home">
+      <div class="quran-card">
+        <div class="verse">﴾ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴿</div>
+        <div class="src">طه · آية ١١٤</div>
+      </div>
+
+      <div class="sec-title">جدول اليوم</div>
+      <div class="lesson"><div><div class="t">اللغة العربية</div><div class="m">الأستاذة نور · قاعة ٢</div></div><div class="time">٠٨:٠٠</div></div>
+      <div class="lesson"><div><div class="t">الرياضيات</div><div class="m">الأستاذ سامي · قاعة ٥</div></div><div class="time">٠٩:٤٥</div></div>
+      <div class="lesson"><div><div class="t">القرآن الكريم</div><div class="m">الشيخ أحمد · المصلى</div></div><div class="time">١١:٣٠</div></div>
+      <div class="lesson"><div><div class="t">العلوم</div><div class="m">الأستاذة ريم · مختبر</div></div><div class="time">١٣:١٥</div></div>
+
+      <div class="sec-title" style="margin-top: 20px;">الواجبات <span class="more">الكل ←</span></div>
+      <div class="row-item"><div class="lead">ع</div><div class="body"><div class="title">حفظ سورة البروج</div><div class="meta">موعد التسليم · الأحد القادم</div></div></div>
+      <div class="row-item"><div class="lead">ر</div><div class="body"><div class="title">تمارين الكسور — صفحة ٤٢</div><div class="meta">موعد التسليم · غداً</div></div></div>
+    </div>
+
+    <div class="screen" data-screen="schedule">
+      <div class="sec-title">الجدول الأسبوعي</div>
+      <div class="chip-row">
+        <button class="chip active">الأحد</button>
+        <button class="chip">الاثنين</button>
+        <button class="chip">الثلاثاء</button>
+        <button class="chip">الأربعاء</button>
+        <button class="chip">الخميس</button>
+      </div>
+      <div class="lesson"><div><div class="t">اللغة العربية</div><div class="m">قاعة ٢</div></div><div class="time">٠٨:٠٠</div></div>
+      <div class="lesson"><div><div class="t">الرياضيات</div><div class="m">قاعة ٥</div></div><div class="time">٠٩:٤٥</div></div>
+      <div class="lesson"><div><div class="t">القرآن الكريم</div><div class="m">المصلى</div></div><div class="time">١١:٣٠</div></div>
+      <div class="lesson"><div><div class="t">العلوم</div><div class="m">المختبر</div></div><div class="time">١٣:١٥</div></div>
+      <div class="lesson"><div><div class="t">اللغة الإنجليزية</div><div class="m">قاعة ٣</div></div><div class="time">١٤:٣٠</div></div>
+    </div>
+
+    <div class="screen" data-screen="quran">
+      <div class="hero-card">
+        <span class="eyebrow">الحفظ</span>
+        <h2>جزء عمّ — ٨٥٪</h2>
+        <p>١٨ سورة محفوظة من أصل ٣٧</p>
+      </div>
+      <div class="sec-title">المراجعة</div>
+      <div class="row-item"><div class="lead">ب</div><div class="body"><div class="title">سورة البلد</div><div class="meta">مراجعة · الأحد</div></div></div>
+      <div class="row-item"><div class="lead">ش</div><div class="body"><div class="title">سورة الشمس</div><div class="meta">حفظ جديد · الاثنين</div></div></div>
+      <div class="row-item"><div class="lead">ض</div><div class="body"><div class="title">سورة الضحى</div><div class="meta">مراجعة · الأربعاء</div></div></div>
+    </div>
+
+    <div class="screen" data-screen="profile">
+      <div class="sec-title">ملفي</div>
+      <div class="card gold-frame"><h3>محمد أحمد الأنصاري</h3><p>الصف الخامس بنين · حضور ٩٦٪</p></div>
+      <div class="row-item"><div class="lead">د</div><div class="body"><div class="title">درجاتي</div><div class="meta">الفصل الدراسي الأول</div></div></div>
+      <div class="row-item"><div class="lead">ح</div><div class="body"><div class="title">حضوري</div><div class="meta">١٢٤ يوماً من ١٣٠</div></div></div>
+      <div class="row-item"><div class="lead">خ</div><div class="body"><div class="title">تسجيل الخروج</div><div class="meta">إنهاء الجلسة</div></div></div>
+    </div>
+  </div>
+
+  <nav class="app-nav">
+    <button class="active" data-go="home">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M3 12 12 4l9 8"/><path d="M5 10v10h14V10"/></svg>
+      <span>الرئيسية</span>
+    </button>
+    <button data-go="schedule">
+      <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <span>الجدول</span>
+    </button>
+    <button data-go="quran">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5H6.5A2.5 2.5 0 0 0 4 19.5z"/></svg>
+      <span>القرآن</span>
+    </button>
+    <button data-go="profile">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2"/></svg>
+      <span>ملفي</span>
+    </button>
+  </nav>
+</div>
+<script>
+document.querySelectorAll('.app-nav button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.app-nav button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.querySelector('[data-screen="'+b.dataset.go+'"]').classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

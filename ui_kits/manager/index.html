@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=420, initial-scale=1">
+<title>تطبيق الإدارة — المهاجرين والأنصار</title>
+<link rel="stylesheet" href="../app-shell.css">
+<style>
+  .app-nav { --cols: 4; }
+  .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+  .kpi { background: var(--bg-card); border-radius: 12px; padding: 14px; box-shadow: var(--hairline); }
+  .kpi .n { font-family: var(--font-arabic-display); color: var(--gold-400); font-size: 28px; font-weight: 700; }
+  .kpi .l { font-size: 12px; color: var(--fg-3); margin-top: 2px; }
+  .kpi .delta { font-size: 11px; margin-top: 4px; }
+  .kpi .delta.up { color: var(--success); }
+  .kpi .delta.down { color: var(--danger); }
+  .alert { background: rgba(201,148,74,.1); border-radius: 12px; padding: 14px; margin-bottom: 16px; box-shadow: inset 0 0 0 1px rgba(201,148,74,.3); }
+  .alert .t { font-size: 13px; color: var(--warn); font-weight: 500; }
+  .alert .b { font-size: 12px; color: var(--fg-2); margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <!-- Top -->
+  <div class="app-top">
+    <div>
+      <div class="greeting">السلام عليكم</div>
+      <div class="who">الأستاذ محمود</div>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="icon-btn" aria-label="إشعارات">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+      </button>
+      <div class="avatar">م</div>
+    </div>
+  </div>
+
+  <div class="app-body">
+    <!-- Home screen -->
+    <div class="screen active" data-screen="home">
+      <div class="hero-card">
+        <span class="eyebrow">اليوم · ١٥ شعبان ١٤٤٧</span>
+        <h2>الحضور العام ٩٤٪</h2>
+        <p>٤٥٣ طالباً حاضرون من أصل ٤٨٢ — ٢٩ غائباً</p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi"><div class="n">٤٨٢</div><div class="l">طلاب نشطون</div><div class="delta up">+٨ هذا الأسبوع</div></div>
+        <div class="kpi"><div class="n">٣٦</div><div class="l">هيئة التدريس</div><div class="delta">مستقر</div></div>
+        <div class="kpi"><div class="n">١٢</div><div class="l">فصلاً دراسياً</div><div class="delta">٦ بنين · ٦ بنات</div></div>
+        <div class="kpi"><div class="n">٦٨٠ك</div><div class="l">تبرعات الشهر</div><div class="delta up">+١٢٪</div></div>
+      </div>
+
+      <div class="alert">
+        <div class="t">تحتاج متابعة · ٣ طلاب</div>
+        <div class="b">غياب متكرر في الصف الخامس بنين — يُرجى التواصل مع الأهل.</div>
+      </div>
+
+      <div class="sec-title">آخر النشاطات <span class="more">الكل ←</span></div>
+      <div class="row-item"><div class="lead">ح</div><div class="body"><div class="title">حملة بناء الفصول — ٦٨٪</div><div class="meta">منذ ساعتين · ٤ متبرعين جدد</div></div></div>
+      <div class="row-item"><div class="lead">ت</div><div class="body"><div class="title">طلب تسجيل جديد — فاطمة الأنصاري</div><div class="meta">أمس · الصف الثالث بنات</div></div></div>
+      <div class="row-item"><div class="lead">ف</div><div class="body"><div class="title">فعالية أمهات الصف الأول</div><div class="meta">الاثنين القادم · قاعة الاجتماعات</div></div></div>
+    </div>
+
+    <!-- Students screen -->
+    <div class="screen" data-screen="students">
+      <div class="sec-title">الطلاب · ٤٨٢</div>
+      <div class="chip-row">
+        <button class="chip active">الكل</button>
+        <button class="chip">بنين</button>
+        <button class="chip">بنات</button>
+        <button class="chip">الابتدائي</button>
+        <button class="chip">الإعدادي</button>
+        <button class="chip">الثانوي</button>
+      </div>
+      <div class="row-item"><div class="lead">م</div><div class="body"><div class="title">محمد أحمد الأنصاري</div><div class="meta">الصف الخامس بنين · حضور ٩٦٪</div></div></div>
+      <div class="row-item"><div class="lead">ف</div><div class="body"><div class="title">فاطمة عبد الله الأنصاري</div><div class="meta">الصف الثالث بنات · حضور ١٠٠٪</div></div></div>
+      <div class="row-item"><div class="lead">ع</div><div class="body"><div class="title">عمر يوسف المهاجر</div><div class="meta">الصف التاسع بنين · حضور ٨٨٪</div></div></div>
+      <div class="row-item"><div class="lead">خ</div><div class="body"><div class="title">خديجة محمد المهاجر</div><div class="meta">الصف الأول الابتدائي · حضور ٩٤٪</div></div></div>
+      <div class="row-item"><div class="lead">س</div><div class="body"><div class="title">سلمى إبراهيم الأنصاري</div><div class="meta">الصف السابع بنات · حضور ٩٢٪</div></div></div>
+    </div>
+
+    <!-- Campaigns screen -->
+    <div class="screen" data-screen="campaigns">
+      <div class="sec-title">الحملات الجارية</div>
+      <div class="card gold-frame">
+        <h3>فصول البنات الجديدة</h3>
+        <p>٦٨٠,٠٠٠ من ١,٠٠٠,٠٠٠ ₪</p>
+        <div style="height:6px;background:var(--ink-600);border-radius:999px;margin-top:10px;overflow:hidden;"><div style="height:100%;width:68%;background:linear-gradient(90deg,var(--gold-500),var(--gold-400));"></div></div>
+      </div>
+      <div class="card">
+        <h3>كفالة طالب لعامٍ كامل</h3>
+        <p>٨٤ من ٢٠٠ كفالة</p>
+        <div style="height:6px;background:var(--ink-600);border-radius:999px;margin-top:10px;overflow:hidden;"><div style="height:100%;width:42%;background:var(--gold-400);"></div></div>
+      </div>
+      <div class="card">
+        <h3>مكتبة المدرسة</h3>
+        <p>٩١,٠٠٠ من ١٠٠,٠٠٠ ₪</p>
+        <div style="height:6px;background:var(--ink-600);border-radius:999px;margin-top:10px;overflow:hidden;"><div style="height:100%;width:91%;background:var(--success);"></div></div>
+      </div>
+    </div>
+
+    <!-- Settings screen -->
+    <div class="screen" data-screen="settings">
+      <div class="sec-title">الإعدادات</div>
+      <div class="row-item"><div class="lead">ا</div><div class="body"><div class="title">بيانات المدرسة</div><div class="meta">العنوان · الهاتف · الرخصة</div></div></div>
+      <div class="row-item"><div class="lead">ط</div><div class="body"><div class="title">الطاقم التعليمي</div><div class="meta">٣٦ معلماً ومعلمة</div></div></div>
+      <div class="row-item"><div class="lead">ع</div><div class="body"><div class="title">العام الدراسي</div><div class="meta">١٤٤٧ هـ · فعّال</div></div></div>
+      <div class="row-item"><div class="lead">خ</div><div class="body"><div class="title">تسجيل الخروج</div><div class="meta">إنهاء الجلسة</div></div></div>
+    </div>
+  </div>
+
+  <!-- Bottom nav -->
+  <nav class="app-nav">
+    <button class="active" data-go="home">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M3 12 12 4l9 8"/><path d="M5 10v10h14V10"/></svg>
+      <span>الرئيسية</span>
+    </button>
+    <button data-go="students">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2"/><path d="M17 3a4 4 0 0 1 0 8"/><path d="M22 21v-2a5 5 0 0 0-3-4.6"/></svg>
+      <span>الطلاب</span>
+    </button>
+    <button data-go="campaigns">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M12 2v20M5 5h12.5a3.5 3.5 0 0 1 0 7H5M5 12h14a3.5 3.5 0 0 1 0 7H5"/></svg>
+      <span>الحملات</span>
+    </button>
+    <button data-go="settings">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <span>الإعدادات</span>
+    </button>
+  </nav>
+</div>
+<script>
+document.querySelectorAll('.app-nav button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.app-nav button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const go = b.dataset.go;
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.querySelector('[data-screen="'+go+'"]').classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
