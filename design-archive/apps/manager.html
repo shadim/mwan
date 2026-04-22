@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<title>المهاجرين والأنصار — لوحة المدير</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<style>html,body{margin:0;padding:0} *{box-sizing:border-box}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" src="manager-tabs.jsx"></script>
+<script type="text/babel" data-presets="react">
+
+function ManagerApp() {
+  const [tab, setTab] = React.useState(0);
+  const tabs = [
+    { icon: '📊', ar: 'الرئيسية', en: 'Dashboard' },
+    { icon: '👥', ar: 'الطلاب', en: 'Students' },
+    { icon: '👨‍🏫', ar: 'المعلمون', en: 'Teachers' },
+    { icon: '💰', ar: 'المالية', en: 'Finance' },
+    { icon: '📅', ar: 'التقويم', en: 'Calendar' },
+    { icon: '⚙', ar: 'الإعدادات', en: 'Settings' },
+  ];
+  return (
+    <AppLangProvider>
+      <AppShell tabs={tabs} activeTab={tab} onTabChange={setTab}
+        role="لوحة المدير" roleEn="Manager Dashboard" user="م.ع">
+        {tab === 0 && <ManagerDashTab/>}
+        {tab === 1 && <ManagerStudentsTab/>}
+        {tab === 2 && <ManagerTeachersTab/>}
+        {tab === 3 && <ManagerFinanceTab/>}
+        {tab === 4 && <ManagerCalendarTab/>}
+        {tab === 5 && <ManagerSettingsTab/>}
+      </AppShell>
+    </AppLangProvider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<ManagerApp/>);
+</script>
+</body>
+</html>

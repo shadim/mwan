@@ -1,0 +1,297 @@
+/* ============================================================
+   Almohajirin wel Ansar — App shell styles
+   Companion to colors_and_type.css
+   Uses semantic tokens so it follows .theme-mint, .theme-paper, dark, etc.
+   Layout: side-rail (≥1024px) ↔ top-bar (768-1023px) ↔ bottom-tabs (<768px)
+   ============================================================ */
+
+:root {
+  --rail-w: 72px;
+  --rail-w-lg: 84px;
+  --topbar-h: 56px;
+  --bottomtab-h: 64px;
+  --app-max: 1400px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 56px;
+}
+
+/* ---------- Reset basics ---------- */
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg-2);
+  font-family: var(--font-arabic-body, 'Tajawal', sans-serif);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+*, *::before, *::after { box-sizing: border-box; }
+button { font-family: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ---------- Khatam star hr ---------- */
+.hr-star {
+  display: flex; align-items: center; gap: 12px;
+  margin: var(--space-7) 0;
+}
+.hr-star::before, .hr-star::after {
+  content: ''; flex: 1; height: 1px; background: var(--divider);
+}
+.hr-star svg { color: var(--accent-warm); flex-shrink: 0; }
+
+/* ---------- Eyebrow / section labels ---------- */
+.eyebrow {
+  font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif);
+  font-size: 11px; font-weight: 500;
+  color: var(--accent-warm);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.eyebrow::before {
+  content: ''; width: 16px; height: 1px; background: currentColor; opacity: .6;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif);
+  font-weight: 600; font-size: 14px; white-space: nowrap;
+  padding: 12px 22px; border-radius: 8px; border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--dur-fast, 150ms) var(--ease-standard, ease),
+              color var(--dur-fast, 150ms) var(--ease-standard, ease),
+              transform var(--dur-fast, 150ms) var(--ease-standard, ease),
+              box-shadow var(--dur-fast, 150ms) var(--ease-standard, ease);
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-accent, var(--shadow-md)); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-ghost { background: transparent; color: var(--fg-1); border-color: var(--border); }
+.btn-ghost:hover { background: var(--bg-card-hover); }
+.btn-warm { background: var(--accent-warm); color: #fff; box-shadow: var(--shadow-md); }
+.btn-warm:hover { background: var(--accent-warm-hover); }
+.btn-sm { padding: 8px 14px; font-size: 12px; border-radius: 6px; }
+.btn-lg { padding: 14px 26px; font-size: 15px; }
+
+/* ---------- Card ---------- */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Chip ---------- */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 999px; font-size: 12px;
+  font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif);
+  font-weight: 500;
+  background: var(--bg-card-hover); color: var(--fg-2);
+}
+.chip.accent { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent-press); }
+.chip.warm   { background: color-mix(in srgb, var(--accent-warm) 16%, transparent); color: var(--accent-warm-hover); }
+.chip.success{ background: color-mix(in srgb, var(--success, #3F8C66) 14%, transparent); color: var(--success, #3F8C66); }
+.chip.danger { background: color-mix(in srgb, var(--danger, #B85449) 14%, transparent); color: var(--danger, #B85449); }
+
+/* ================================================================
+   App Shell — desktop side-rail, tablet top bar, mobile bottom tabs
+   ================================================================ */
+.app-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* ---------- Top bar (shown on tablet & below) ---------- */
+.top-bar {
+  grid-row: 1;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--space-5);
+  height: var(--topbar-h);
+  background: var(--bg-elev);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 30;
+}
+.top-bar__brand { display: flex; align-items: center; gap: 10px; }
+.top-bar__title { font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif); font-weight: 700; font-size: 15px; color: var(--fg-1); line-height: 1; }
+.top-bar__role  { font-size: 10px; color: var(--accent-warm); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 3px; font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif); }
+.top-bar__actions { display: flex; align-items: center; gap: 10px; }
+.avatar {
+  width: 32px; height: 32px; border-radius: 999px;
+  background: var(--accent); color: var(--on-accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif);
+  font-weight: 700; font-size: 12px; flex-shrink: 0;
+}
+.icon-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--bg-card-hover); color: var(--fg-2);
+  border: none; display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 15px;
+  position: relative;
+}
+.icon-btn .dot {
+  position: absolute; top: 7px; right: 7px;
+  width: 6px; height: 6px; border-radius: 999px; background: var(--accent-warm);
+}
+
+/* ---------- Content ---------- */
+.app-content {
+  grid-row: 2;
+  padding: var(--space-5);
+  padding-bottom: calc(var(--bottomtab-h) + var(--space-5));
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+.app-content__inner { max-width: var(--app-max); margin: 0 auto; }
+
+/* ---------- Bottom tabs (mobile only) ---------- */
+.bottom-tabs {
+  grid-row: 3;
+  display: flex; justify-content: space-around; align-items: center;
+  height: var(--bottomtab-h);
+  background: var(--bg-elev);
+  border-top: 1px solid var(--border);
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+}
+.bottom-tab {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; padding: 6px 4px;
+  color: var(--fg-3); text-decoration: none;
+  font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif);
+  font-size: 10px; font-weight: 500;
+  border: none; background: transparent; cursor: pointer;
+}
+.bottom-tab__icon { font-size: 18px; line-height: 1; }
+.bottom-tab.active { color: var(--accent); font-weight: 700; }
+.bottom-tab.active .bottom-tab__icon { transform: scale(1.1); }
+
+/* ---------- Side rail (desktop) — hidden below ---------- */
+.side-rail { display: none; }
+
+/* ================================================================
+   TABLET (768+) — hide bottom tabs, show horizontal nav links in top bar
+   ================================================================ */
+@media (min-width: 768px) {
+  .top-bar { padding: 0 var(--space-6); height: 64px; }
+  .top-bar__nav { display: flex; align-items: center; gap: var(--space-5); }
+  .top-bar__nav-link {
+    font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif);
+    font-size: 13px; font-weight: 500; color: var(--fg-2);
+    text-decoration: none; padding: 6px 4px; border-bottom: 2px solid transparent;
+  }
+  .top-bar__nav-link.active { color: var(--accent); border-color: var(--accent); font-weight: 700; }
+  .top-bar__nav-link:hover { color: var(--fg-1); }
+
+  .bottom-tabs { display: none; }
+  .app-content { padding: var(--space-6) var(--space-7); padding-bottom: var(--space-7); }
+  .app-content__inner { padding: 0; }
+}
+
+/* ================================================================
+   DESKTOP (1024+) — side rail replaces horizontal nav
+   ================================================================ */
+@media (min-width: 1024px) {
+  .app-shell {
+    grid-template-columns: var(--rail-w) 1fr;
+    grid-template-rows: var(--topbar-h) 1fr;
+  }
+  .side-rail {
+    grid-row: 1 / 3; grid-column: 1;
+    background: var(--bg-elev);
+    border-left: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center;
+    padding: var(--space-5) 0;
+    gap: var(--space-1);
+    position: sticky; top: 0; height: 100vh;
+  }
+  .side-rail__brand { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4); color: var(--accent); }
+  .side-rail__link {
+    width: 48px; height: 48px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--fg-3); font-size: 18px;
+    text-decoration: none; cursor: pointer; position: relative;
+    transition: all var(--dur-fast, 150ms) var(--ease-standard, ease);
+  }
+  .side-rail__link:hover { background: var(--bg-card-hover); color: var(--fg-1); }
+  .side-rail__link.active { background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-accent, var(--shadow-md)); }
+  .side-rail__link.active::before {
+    content: ''; position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+    width: 4px; height: 24px; background: var(--accent); border-radius: 2px;
+  }
+  .side-rail__link .tooltip {
+    position: absolute; left: calc(100% + 12px); top: 50%; transform: translateY(-50%);
+    background: var(--fg-1); color: var(--bg);
+    padding: 6px 12px; border-radius: 6px; font-size: 12px;
+    font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif);
+    white-space: nowrap; opacity: 0; pointer-events: none;
+    transition: opacity 150ms;
+  }
+  .side-rail__link:hover .tooltip { opacity: 1; }
+
+  .top-bar { grid-column: 2; grid-row: 1; }
+  .top-bar__nav { display: none; }
+  .app-content { grid-column: 2; grid-row: 2; padding: var(--space-7) var(--space-8); }
+}
+
+/* ================================================================
+   DESKTOP WIDE (1280+) — bigger rail, breathing room
+   ================================================================ */
+@media (min-width: 1280px) {
+  :root { --rail-w: var(--rail-w-lg); }
+  .app-content { padding: var(--space-8) var(--space-9); }
+}
+
+/* ================================================================
+   Utility grids used across apps
+   ================================================================ */
+.grid-2, .grid-3, .grid-4 { display: grid; gap: var(--space-4); }
+.grid-2 { grid-template-columns: 1fr; }
+.grid-3 { grid-template-columns: 1fr; }
+.grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+@media (min-width: 640px) {
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Section title row */
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--space-4); margin-bottom: var(--space-4);
+}
+.section-head h2 { margin: 0; font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif); font-size: 22px; font-weight: 700; color: var(--fg-1); }
+@media (min-width: 1024px) {
+  .section-head h2 { font-size: 26px; }
+}
+
+/* ---------- Progress ---------- */
+.progress { height: 6px; background: color-mix(in srgb, var(--accent) 14%, transparent); border-radius: 999px; overflow: hidden; }
+.progress > span { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+
+/* ---------- Stat tile ---------- */
+.stat {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-md, 8px); padding: var(--space-4);
+}
+.stat__label { font-size: 11px; color: var(--fg-3); letter-spacing: 0.1em; font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif); }
+.stat__value { font-family: var(--font-arabic-display, 'Reem Kufi', sans-serif); font-size: 28px; font-weight: 700; color: var(--fg-1); margin-top: 4px; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat__delta { font-size: 11px; margin-top: 6px; }
+.stat__delta.up { color: var(--success, #3F8C66); }
+.stat__delta.flat { color: var(--fg-3); }

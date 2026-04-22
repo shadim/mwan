@@ -1,0 +1,51 @@
+.eyebrow {
+  font-family: var(--font-arabic-display);
+  font-size: 10px; font-weight: 500;
+  color: var(--accent-warm);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 4px;
+}
+.eyebrowLine { width: 14px; height: 1px; background: currentColor; opacity: 0.6; }
+
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: var(--radius-pill); font-size: 11px;
+  font-family: var(--font-arabic-display); font-weight: 500;
+}
+.chip_default { background: var(--bg-card-hover); color: var(--fg-2); }
+.chip_accent { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+.chip_warm { background: color-mix(in srgb, var(--accent-warm) 15%, transparent); color: var(--accent-warm); }
+.chip_success { background: color-mix(in srgb, var(--success) 14%, transparent); color: var(--success); }
+.chip_danger { background: color-mix(in srgb, var(--danger) 12%, transparent); color: var(--danger); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-arabic-display); font-weight: 600;
+  border-radius: var(--radius-md); border: none; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+.btn_primary { background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-accent); }
+.btn_primary:hover { background: var(--accent-hover); }
+.btn_ghost { background: transparent; color: var(--fg-1); border: 1px solid var(--border); }
+.btn_ghost:hover { background: var(--bg-card-hover); }
+.btn_warm { background: var(--accent-warm); color: #fff; }
+.btn_danger { background: var(--danger); color: #fff; }
+.btn_sm { padding: 7px 14px; font-size: 11px; }
+.btn_md { padding: 10px 20px; font-size: 13px; }
+.btn_lg { padding: 13px 26px; font-size: 14px; }
+
+.stat {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 14px 16px;
+}
+.statLabel { font-size: 10px; color: var(--fg-3); font-family: var(--font-arabic-display); letter-spacing: 0.1em; }
+.statRow { display: flex; align-items: baseline; gap: 6px; margin-top: 4px; }
+.statValue { font-family: var(--font-arabic-display); font-size: 24px; font-weight: 700; color: var(--fg-1); font-variant-numeric: tabular-nums; }
+.statDeltaUp { font-size: 10px; color: var(--success); font-weight: 600; }
+.statDeltaFlat { font-size: 10px; color: var(--fg-3); font-weight: 600; }

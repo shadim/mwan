@@ -1,0 +1,380 @@
+/* ============================================================
+   Almohajirin wel Ansar — Design Tokens
+   Dark palette · gold accent · Arabic-first
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  /* ---------- COLOR · Base palette ---------- */
+  --ink-900:           #0E0E0E;  /* page background, deepest */
+  --ink-800:           #141414;  /* surface-1 */
+  --ink-700:           #1C1C1C;  /* surface-2, cards on black */
+  --ink-600:           #242424;  /* surface-3, hover */
+  --ink-500:           #2E2E2E;  /* borders on dark */
+  --ink-400:           #3A3A3A;
+  --ink-300:           #6E6E6E;  /* secondary text on dark */
+  --ink-200:           #B8B8B8;  /* body text on dark */
+  --ink-100:           #E6E6E6;  /* high-emphasis text on dark */
+  --ink-050:           #F5F1E6;  /* parchment / page on light */
+
+  /* Gold — the single accent */
+  --gold-900:          #5A4413;
+  --gold-700:          #8C6D2E;  /* deep gold, pressed states */
+  --gold-500:          #C9A24A;  /* primary gold */
+  --gold-400:          #E8C76B;  /* bright gold — signature accent */
+  --gold-200:          #F2DFA1;  /* gold tint, highlights */
+  --gold-050:          #FBF4DC;  /* gold wash */
+
+  /* Parchment — for light surfaces */
+  --parch-050:         #FBF7EC;
+  --parch-100:         #F5F1E6;
+  --parch-200:         #EDE6D2;
+  --parch-300:         #DFD4B3;
+
+  /* Semantic accents (sparingly) */
+  --success:           #6B8E4E;  /* olive green, quietly Islamic */
+  --success-bg:        #1E2818;
+  --warn:              #C9944A;
+  --danger:            #B8453A;
+  --danger-bg:         #2A1616;
+  --info:              #5B7CA8;
+
+  /* ---------- COLOR · Semantic (dark mode default) ---------- */
+  --bg:                var(--ink-900);
+  --bg-elev:           var(--ink-800);
+  --bg-card:           var(--ink-700);
+  --bg-card-hover:     var(--ink-600);
+  --border:            var(--ink-500);
+  --border-strong:     var(--ink-400);
+  --divider:           #262626;
+
+  --fg-1:              var(--ink-100);   /* headings */
+  --fg-2:              var(--ink-200);   /* body */
+  --fg-3:              var(--ink-300);   /* secondary, meta */
+  --fg-accent:         var(--gold-400);  /* gold accent text */
+  --fg-muted:          #808080;
+
+  --accent:            var(--gold-400);
+  --accent-hover:      var(--gold-500);
+  --accent-press:      var(--gold-700);
+  --on-accent:         var(--ink-900);   /* text on gold */
+
+  /* Light parchment mode — used on marketing / donation pages */
+  --paper:             var(--parch-050);
+  --paper-elev:        #ffffff;
+  --paper-border:      var(--parch-300);
+  --paper-fg-1:        #1A1A1A;
+  --paper-fg-2:        #3A3A3A;
+  --paper-fg-3:        #6A6A6A;
+
+  /* ---------- TYPOGRAPHY · families ---------- */
+  --font-arabic-body:    'Tajawal', 'Segoe UI', system-ui, sans-serif;
+  --font-arabic-display: 'Reem Kufi', 'Tajawal', sans-serif;
+  --font-arabic-quran:   'Amiri', 'Times New Roman', serif;
+  --font-latin-body:     'Inter', system-ui, sans-serif;
+  --font-latin-display:  'Cormorant Garamond', 'Amiri', serif;
+  --font-mono:           ui-monospace, 'SF Mono', 'Menlo', monospace;
+
+  /* ---------- TYPOGRAPHY · scale (mobile-first, fluid) ---------- */
+  --text-xs:    12px;
+  --text-sm:    14px;
+  --text-base:  16px;
+  --text-md:    18px;
+  --text-lg:    20px;
+  --text-xl:    24px;
+  --text-2xl:   30px;
+  --text-3xl:   38px;
+  --text-4xl:   48px;
+  --text-5xl:   64px;
+  --text-display: clamp(48px, 8vw, 96px);
+
+  --leading-tight:   1.15;
+  --leading-snug:    1.3;
+  --leading-normal:  1.55;
+  --leading-loose:   1.8;   /* Arabic body prefers more air */
+
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.08em;
+  --tracking-kufi:   0.02em;
+
+  /* ---------- SPACING ---------- */
+  --space-0:   0;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+
+  /* ---------- RADIUS ---------- */
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --radius-lg:    14px;
+  --radius-xl:    20px;
+  --radius-2xl:   28px;
+  --radius-pill:  999px;
+  --radius-arch:  50% 50% 8px 8px / 22% 22% 8px 8px; /* mihrab arch */
+
+  /* ---------- SHADOWS ---------- */
+  /* Shadows are restrained on dark; mostly glow + inset hairline */
+  --shadow-sm:    0 1px 2px rgba(0,0,0,.4);
+  --shadow-md:    0 4px 14px rgba(0,0,0,.35);
+  --shadow-lg:    0 18px 48px rgba(0,0,0,.45);
+  --shadow-gold:  0 0 0 1px rgba(232,199,107,.35), 0 8px 28px rgba(232,199,107,.18);
+  --ring-focus:   0 0 0 3px rgba(232,199,107,.45);
+  --hairline:     inset 0 0 0 1px var(--border);
+  --hairline-gold:inset 0 0 0 1px rgba(232,199,107,.35);
+
+  /* ---------- MOTION ---------- */
+  --ease-standard: cubic-bezier(.2,.0,.0,1);
+  --ease-enter:    cubic-bezier(.16,1,.3,1);
+  --ease-exit:     cubic-bezier(.4,0,1,1);
+  --dur-fast:      140ms;
+  --dur-base:      220ms;
+  --dur-slow:      420ms;
+
+  /* ---------- LAYOUT ---------- */
+  --content-max:   1200px;
+  --gutter:        clamp(16px, 4vw, 32px);
+  --grid-col:      64px;
+  --z-nav:         50;
+  --z-modal:       100;
+  --z-toast:       200;
+}
+
+/* ============================================================
+   Base / reset — sensible defaults
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg-2);
+  font-family: var(--font-arabic-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html[dir="rtl"] body { font-family: var(--font-arabic-body); }
+html[dir="ltr"] body { font-family: var(--font-latin-body); }
+
+/* ============================================================
+   Semantic typography — use these classes or tags directly
+   ============================================================ */
+.display,
+h1.display {
+  font-family: var(--font-arabic-display);
+  font-size: var(--text-display);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-kufi);
+  color: var(--fg-1);
+}
+
+h1, .h1 {
+  font-family: var(--font-arabic-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-kufi);
+  color: var(--fg-1);
+  margin: 0 0 var(--space-6);
+}
+
+h2, .h2 {
+  font-family: var(--font-arabic-display);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  color: var(--fg-1);
+  margin: 0 0 var(--space-5);
+}
+
+h3, .h3 {
+  font-family: var(--font-arabic-body);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: var(--leading-snug);
+  color: var(--fg-1);
+  margin: 0 0 var(--space-4);
+}
+
+h4, .h4 {
+  font-family: var(--font-arabic-body);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: var(--leading-snug);
+  color: var(--fg-1);
+  margin: 0 0 var(--space-3);
+}
+
+p, .body {
+  font-size: var(--text-base);
+  line-height: var(--leading-loose);
+  color: var(--fg-2);
+  margin: 0 0 var(--space-4);
+}
+
+.body-lg {
+  font-size: var(--text-md);
+  line-height: var(--leading-loose);
+}
+
+.small, small {
+  font-size: var(--text-sm);
+  color: var(--fg-3);
+}
+
+.caption {
+  font-size: var(--text-xs);
+  color: var(--fg-3);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* Qur'anic / hadith passage — serif, centered, larger line-height */
+.quran {
+  font-family: var(--font-arabic-quran);
+  font-size: var(--text-2xl);
+  line-height: 2;
+  color: var(--fg-1);
+  text-align: center;
+  letter-spacing: 0;
+}
+.quran-sm {
+  font-family: var(--font-arabic-quran);
+  font-size: var(--text-lg);
+  line-height: 1.9;
+}
+
+/* Overline label — gold, kufi, spaced */
+.eyebrow {
+  font-family: var(--font-arabic-display);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--fg-accent);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.numeric {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+code, kbd, .mono {
+  font-family: var(--font-mono);
+  font-size: .92em;
+}
+
+/* Links */
+a {
+  color: var(--fg-accent);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+a:hover { color: var(--gold-200); }
+
+/* ============================================================
+   Mint Garden — green-led light theme (primary light theme)
+   Apply via <body class="theme-mint"> or [data-theme="mint"]
+   Palette: pale sage ground, deep mosque green, brass accent.
+   ============================================================ */
+:root {
+  /* Green scale — mint green */
+  --green-050:  #E8F5F0;   /* pale mint (page bg) */
+  --green-100:  #C8EAD9;   /* mint elevation */
+  --green-200:  #A0D9BE;
+  --green-300:  #6CC4A0;   /* bright mint */
+  --green-500:  #3BA67E;
+  --green-600:  #2D9269;   /* mint green, primary accent */
+  --green-700:  #237A56;   /* deep mint */
+  --green-800:  #1B6045;   /* dark mint */
+  --green-900:  #134A34;
+
+  /* Brass scale paired with green */
+  --brass-300:  #D9B765;
+  --brass-500:  #B8923A;
+  --brass-700:  #8A6E2A;
+}
+
+.theme-mint,
+[data-theme="mint"] {
+  --bg:            var(--green-050);
+  --bg-elev:       #ffffff;
+  --bg-card:       #ffffff;
+  --bg-card-hover: var(--green-100);
+  --bg-hero:       var(--green-050);
+  --border:        rgba(45,146,105,0.15);
+  --border-strong: rgba(45,146,105,0.28);
+  --divider:       rgba(45,146,105,0.10);
+  --hairline:      inset 0 0 0 1px rgba(45,146,105,0.15);
+  --hairline-accent: inset 0 0 0 1px rgba(45,146,105,0.35);
+
+  --fg-1:          var(--green-900);   /* headings */
+  --fg-2:          #2E4A3C;            /* body */
+  --fg-3:          #6B8E7E;            /* secondary */
+  --fg-accent:     var(--green-600);
+  --fg-muted:      #8BADA0;
+
+  --accent:        var(--green-600);
+  --accent-hover:  var(--green-700);
+  --accent-press:  var(--green-800);
+  --accent-soft:   var(--green-100);
+  --on-accent:     #ffffff;
+
+  --accent-warm:   var(--brass-500);   /* brass highlights */
+  --accent-warm-hover: var(--brass-700);
+
+  --success:       var(--green-600);
+  --ring-focus:    0 0 0 3px rgba(45,146,105,0.35);
+  --shadow-sm:     0 1px 2px rgba(45,146,105,0.06);
+  --shadow-md:     0 6px 18px rgba(45,146,105,0.10);
+  --shadow-lg:     0 20px 48px rgba(45,146,105,0.14);
+  --shadow-accent: 0 6px 18px rgba(45,146,105,0.25);
+}
+
+/* ============================================================
+   Light (parchment) theme override — alternative light theme
+   Apply via <body class="theme-paper"> or [data-theme="paper"]
+   ============================================================ */
+.theme-paper,
+[data-theme="paper"] {
+  --bg:            var(--paper);
+  --bg-elev:       var(--paper-elev);
+  --bg-card:       #ffffff;
+  --bg-card-hover: var(--parch-100);
+  --border:        var(--paper-border);
+  --border-strong: #C9B98A;
+  --divider:       var(--parch-200);
+  --fg-1:          var(--paper-fg-1);
+  --fg-2:          var(--paper-fg-2);
+  --fg-3:          var(--paper-fg-3);
+  --accent:        var(--gold-700);
+  --accent-hover:  var(--gold-500);
+  --accent-press:  var(--gold-900);
+  --on-accent:     #ffffff;
+  --hairline:      inset 0 0 0 1px var(--paper-border);
+  --shadow-sm:     0 1px 2px rgba(58,40,23,.06);
+  --shadow-md:     0 6px 18px rgba(58,40,23,.10);
+  --shadow-lg:     0 20px 48px rgba(58,40,23,.14);
+}
+
+/* RTL helpers */
+[dir="rtl"] { direction: rtl; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}

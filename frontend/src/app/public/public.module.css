@@ -1,0 +1,92 @@
+.utilBar {
+  background: var(--green-800); color: #fff; font-size: 12px;
+  padding: 6px 24px; display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-arabic-display);
+}
+.langBtns { display: flex; gap: 12px; }
+.langActive, .langInactive {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-arabic-display); font-size: 11px; padding: 0;
+}
+.langActive { color: var(--brass-300); font-weight: 700; }
+.langInactive { color: rgba(255,255,255,0.6); }
+
+.navbar {
+  background: var(--bg-elev); border-bottom: 1px solid var(--border);
+  padding: 0 24px; position: sticky; top: 0; z-index: 50;
+}
+.navInner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; height: 64px;
+}
+.navBrand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brandTitle { font-family: var(--font-arabic-display); font-size: 16px; font-weight: 700; color: var(--fg-1); line-height: 1; }
+.brandSub { font-size: 9px; color: var(--accent-warm); letter-spacing: 0.15em; font-family: var(--font-arabic-display); margin-top: 2px; }
+
+.navLinks { display: flex; gap: 28px; }
+.navLink {
+  font-family: var(--font-arabic-display); font-size: 14px; font-weight: 500;
+  color: var(--fg-2); text-decoration: none; padding-bottom: 4px;
+  border-bottom: 2px solid transparent; transition: color 0.15s;
+}
+.navLink:hover { color: var(--accent); }
+
+.navCta {
+  background: var(--accent); color: var(--on-accent);
+  padding: 10px 20px; border-radius: 8px; font-family: var(--font-arabic-display);
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  box-shadow: var(--shadow-accent);
+}
+
+.hamburger {
+  display: none; background: none; border: none;
+  font-size: 24px; color: var(--fg-1); cursor: pointer; padding: 8px;
+}
+
+@media (max-width: 768px) {
+  .navLinks, .navCta { display: none; }
+  .hamburger { display: block; }
+}
+
+.mobileMenu {
+  padding: 12px 24px 20px; background: var(--bg-elev);
+  border-top: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.mobileLink {
+  font-family: var(--font-arabic-display); font-size: 16px; font-weight: 500;
+  color: var(--fg-2); text-decoration: none; padding: 8px 0;
+  border-bottom: 1px solid var(--divider);
+}
+.mobileCta {
+  background: var(--accent); color: var(--on-accent);
+  padding: 12px; border-radius: 8px; font-family: var(--font-arabic-display);
+  font-size: 14px; font-weight: 600; text-decoration: none; text-align: center; margin-top: 4px;
+}
+
+@media (min-width: 769px) {
+  .mobileMenu { display: none; }
+}
+
+/* Footer */
+.footer {
+  background: var(--green-900); color: rgba(255,255,255,0.7);
+  padding: 48px 24px 24px; font-family: var(--font-arabic-body);
+}
+.footerGrid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px;
+}
+.footerBrand { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.footerBrand span { font-family: var(--font-arabic-display); font-size: 16px; font-weight: 700; color: #fff; }
+.footerDesc { font-size: 13px; line-height: 1.8; opacity: 0.7; margin: 0; }
+.footerHeading { font-family: var(--font-arabic-display); font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 12px; }
+.footerLink {
+  display: block; color: rgba(255,255,255,0.6); text-decoration: none;
+  font-size: 13px; padding: 4px 0; font-family: var(--font-arabic-display);
+}
+.footerContact { font-size: 13px; line-height: 2; opacity: 0.7; }
+.footerBottom {
+  border-top: 1px solid rgba(255,255,255,0.1); margin-top: 32px; padding-top: 16px;
+  text-align: center; font-size: 11px; opacity: 0.5;
+}

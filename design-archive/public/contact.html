@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<title>المهاجرين والأنصار — تواصل</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<style>html,body{margin:0;padding:0} *{box-sizing:border-box} img{max-width:100%;display:block}
+  input,textarea,select { font-family: Tajawal, sans-serif; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" data-presets="react">
+
+function ContactPage() {
+  const [form, setForm] = React.useState({ name: '', email: '', phone: '', subject: 'general', message: '' });
+  const [submitted, setSubmitted] = React.useState(false);
+  const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
+
+  const inputStyle = {
+    width: '100%', padding: '12px 14px', borderRadius: 8,
+    border: '1px solid var(--border)', background: 'var(--bg-card)',
+    color: 'var(--fg-1)', fontSize: 14, fontFamily: 'Tajawal, sans-serif',
+    outline: 'none', transition: 'border-color 0.2s',
+  };
+
+  const labelStyle = {
+    fontFamily: 'Reem Kufi', fontSize: 13, fontWeight: 600,
+    color: 'var(--fg-1)', marginBottom: 6, display: 'block',
+  };
+
+  return (
+    <PageShell activePage="contact.html">
+      <div style={{
+        background: 'var(--green-800)', color: '#fff',
+        padding: 'clamp(48px,8vw,80px) 24px', textAlign: 'center',
+        position: 'relative', overflow: 'hidden',
+      }}>
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.05, backgroundImage: 'url(img/pattern-girih.svg)', backgroundSize: '140px' }}/>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <SectionEyebrow><T ar="نحن هنا لمساعدتك" en="We're Here to Help"/></SectionEyebrow>
+          <h1 style={{ fontFamily: 'Reem Kufi', fontSize: 'clamp(28px,5vw,48px)', fontWeight: 700, margin: '16px 0 0' }}>
+            <T ar="تواصل معنا" en="Contact Us"/>
+          </h1>
+        </div>
+      </div>
+
+      <Section>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 40 }}>
+          {/* Contact info */}
+          <div>
+            <SectionEyebrow><T ar="معلومات التواصل" en="Contact Information"/></SectionEyebrow>
+            <SectionTitle><T ar="تفضّل بزيارتنا" en="Come Visit Us"/></SectionTitle>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 8 }}>
+              {[
+                { icon: '📍', ar: 'النقب، فلسطين', en: 'Negev, Palestine', subAr: 'شارع المدرسة الرئيسي', subEn: 'Main School Street' },
+                { icon: '☎', ar: '٠٤ ٦٢٣ ٨٨٩١', en: '04-623-8891', subAr: 'الأحد — الخميس · ٧:٣٠ — ٢:٠٠', subEn: 'Sun — Thu · 7:30 — 2:00' },
+                { icon: '✉', ar: 'info@almohajirin.edu', en: 'info@almohajirin.edu', subAr: 'نرد خلال ٢٤ ساعة', subEn: 'We reply within 24 hours' },
+              ].map((c, i) => (
+                <div key={i} style={{
+                  display: 'flex', gap: 14, alignItems: 'flex-start',
+                  background: 'var(--bg-card)', border: '1px solid var(--border)',
+                  borderRadius: 12, padding: 18,
+                }}>
+                  <div style={{
+                    width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+                    background: 'color-mix(in srgb, var(--accent) 12%, transparent)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18,
+                  }}>{c.icon}</div>
+                  <div>
+                    <div style={{ fontFamily: 'Reem Kufi', fontSize: 14, fontWeight: 600, color: 'var(--fg-1)' }}>
+                      <T ar={c.ar} en={c.en}/>
+                    </div>
+                    <div style={{ fontSize: 12, color: 'var(--fg-3)', marginTop: 2 }}>
+                      <T ar={c.subAr} en={c.subEn}/>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Map placeholder */}
+            <div style={{
+              marginTop: 20, borderRadius: 12, overflow: 'hidden',
+              border: '1px solid var(--border)', height: 180,
+              background: 'var(--bg-card)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: 'var(--fg-3)', fontSize: 13, fontFamily: 'monospace',
+            }}>
+              [ map placeholder ]
+            </div>
+          </div>
+
+          {/* Contact form */}
+          <div style={{
+            background: 'var(--bg-card)', border: '1px solid var(--border)',
+            borderRadius: 16, padding: 'clamp(20px,4vw,32px)',
+          }}>
+            {submitted ? (
+              <div style={{ textAlign: 'center', padding: '40px 20px' }}>
+                <div style={{ fontSize: 48, marginBottom: 16 }}>✓</div>
+                <div style={{ fontFamily: 'Reem Kufi', fontSize: 22, fontWeight: 700, color: 'var(--accent)' }}>
+                  <T ar="تم الإرسال بنجاح" en="Sent Successfully"/>
+                </div>
+                <p style={{ fontSize: 14, color: 'var(--fg-3)', marginTop: 8 }}>
+                  <T ar="سنتواصل معك في أقرب وقت إن شاء الله" en="We'll get back to you as soon as possible, insha'Allah"/>
+                </p>
+                <button onClick={() => { setSubmitted(false); setForm({ name:'',email:'',phone:'',subject:'general',message:'' }); }}
+                  style={{
+                    marginTop: 16, background: 'var(--accent)', color: 'var(--on-accent)',
+                    padding: '10px 24px', borderRadius: 8, border: 'none',
+                    fontFamily: 'Reem Kufi', fontSize: 14, fontWeight: 600, cursor: 'pointer',
+                  }}>
+                  <T ar="رسالة جديدة" en="New Message"/>
+                </button>
+              </div>
+            ) : (
+              <>
+                <div style={{ fontFamily: 'Reem Kufi', fontSize: 20, fontWeight: 700, color: 'var(--fg-1)', marginBottom: 20 }}>
+                  <T ar="أرسل لنا رسالة" en="Send Us a Message"/>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  <div>
+                    <label style={labelStyle}><T ar="الاسم الكامل" en="Full Name"/></label>
+                    <input style={inputStyle} value={form.name} onChange={e => set('name', e.target.value)}
+                      placeholder={useLang().lang === 'ar' ? 'أدخل اسمك' : 'Enter your name'}
+                      onFocus={e => e.target.style.borderColor='var(--accent)'}
+                      onBlur={e => e.target.style.borderColor='var(--border)'}/>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                    <div>
+                      <label style={labelStyle}><T ar="البريد الإلكتروني" en="Email"/></label>
+                      <input type="email" style={inputStyle} value={form.email} onChange={e => set('email', e.target.value)}
+                        placeholder="email@example.com"
+                        onFocus={e => e.target.style.borderColor='var(--accent)'}
+                        onBlur={e => e.target.style.borderColor='var(--border)'}/>
+                    </div>
+                    <div>
+                      <label style={labelStyle}><T ar="الهاتف" en="Phone"/></label>
+                      <input type="tel" style={inputStyle} value={form.phone} onChange={e => set('phone', e.target.value)}
+                        placeholder="05x-xxx-xxxx"
+                        onFocus={e => e.target.style.borderColor='var(--accent)'}
+                        onBlur={e => e.target.style.borderColor='var(--border)'}/>
+                    </div>
+                  </div>
+                  <div>
+                    <label style={labelStyle}><T ar="الموضوع" en="Subject"/></label>
+                    <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.subject} onChange={e => set('subject', e.target.value)}>
+                      <option value="general"><T ar="استفسار عام" en="General Inquiry"/></option>
+                      <option value="register"><T ar="التسجيل" en="Registration"/></option>
+                      <option value="donate"><T ar="التبرعات" en="Donations"/></option>
+                      <option value="volunteer"><T ar="التطوع" en="Volunteering"/></option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={labelStyle}><T ar="الرسالة" en="Message"/></label>
+                    <textarea rows={4} style={{ ...inputStyle, resize: 'vertical' }} value={form.message}
+                      onChange={e => set('message', e.target.value)}
+                      placeholder={useLang().lang === 'ar' ? 'اكتب رسالتك هنا...' : 'Write your message here...'}
+                      onFocus={e => e.target.style.borderColor='var(--accent)'}
+                      onBlur={e => e.target.style.borderColor='var(--border)'}/>
+                  </div>
+                  <button onClick={() => setSubmitted(true)} style={{
+                    background: 'var(--accent)', color: 'var(--on-accent)',
+                    padding: '14px 28px', borderRadius: 8, border: 'none',
+                    fontFamily: 'Reem Kufi', fontSize: 15, fontWeight: 600, cursor: 'pointer',
+                    boxShadow: 'var(--shadow-accent)', width: '100%',
+                  }}>
+                    <T ar="إرسال الرسالة" en="Send Message"/>
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </Section>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<ContactPage/>);
+</script>
+</body>
+</html>
