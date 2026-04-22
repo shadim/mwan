@@ -1,0 +1,47 @@
+@import './tokens.css';
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg-2);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+html[dir="rtl"] body { font-family: var(--font-arabic-body); }
+html[dir="ltr"] body { font-family: var(--font-latin-body); }
+
+img { max-width: 100%; display: block; }
+a { color: var(--fg-accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+/* Focus visible */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+/* Public site shared styles */
+.pub-section { padding: 64px 24px; }
+.pub-section-inner { max-width: 1200px; margin: 0 auto; }
+.pub-eyebrow {
+  font-family: var(--font-arabic-display); font-size: 12px; font-weight: 500;
+  color: var(--accent-warm); letter-spacing: 0.18em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.pub-eyebrow::before {
+  content: ''; width: 20px; height: 1px; background: currentColor; opacity: 0.6;
+}
+.pub-title {
+  font-family: var(--font-arabic-display); font-size: clamp(26px, 4vw, 38px); font-weight: 700;
+  color: var(--fg-1); margin: 0 0 32px; line-height: 1.2;
+}

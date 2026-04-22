@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<title>المهاجرين والأنصار — البرامج</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<style>html,body{margin:0;padding:0} *{box-sizing:border-box} img{max-width:100%;display:block}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" data-presets="react">
+
+function ProgramsPage() {
+  const [activeTab, setActiveTab] = React.useState(0);
+
+  const programs = [
+    {
+      tabAr: 'تحفيظ القرآن', tabEn: 'Quran Memorization',
+      titleAr: 'برنامج تحفيظ القرآن الكريم', titleEn: 'Holy Quran Memorization Program',
+      descAr: 'برنامج شامل لحفظ القرآن الكريم كاملاً مع إتقان أحكام التجويد وفهم المعاني، تحت إشراف معلمين حافظين ذوي خبرة طويلة.',
+      descEn: 'A comprehensive program for complete Quran memorization with mastery of Tajweed rules and understanding of meanings, supervised by experienced Hafiz teachers.',
+      features: [
+        { ar: 'حلقات يومية صباحية ومسائية', en: 'Daily morning and evening circles' },
+        { ar: 'منهج متدرج من جزء عمّ إلى الختمة', en: 'Graduated curriculum from Juz Amma to completion' },
+        { ar: 'مراجعة دورية وتثبيت الحفظ', en: 'Periodic review and memorization consolidation' },
+        { ar: 'مسابقات قرآنية سنوية', en: 'Annual Quran competitions' },
+        { ar: 'شهادة إتمام الحفظ المعتمدة', en: 'Certified memorization completion certificate' },
+      ],
+      ageAr: 'من ٦ سنوات فأكثر', ageEn: 'Ages 6 and above',
+      hoursAr: '١٠ ساعات أسبوعياً', hoursEn: '10 hours weekly',
+    },
+    {
+      tabAr: 'العلوم الشرعية', tabEn: 'Islamic Studies',
+      titleAr: 'برنامج العلوم الشرعية', titleEn: 'Islamic Studies Program',
+      descAr: 'دراسة منهجية للعلوم الإسلامية تشمل العقيدة والفقه والحديث والسيرة النبوية والتفسير، بأساليب تعليمية حديثة تناسب جميع المراحل.',
+      descEn: 'Systematic study of Islamic sciences including Aqeedah, Fiqh, Hadith, Prophetic Biography, and Tafsir, with modern teaching methods suitable for all levels.',
+      features: [
+        { ar: 'منهج العقيدة الإسلامية الصحيحة', en: 'Correct Islamic Aqeedah curriculum' },
+        { ar: 'فقه العبادات والمعاملات', en: 'Fiqh of worship and transactions' },
+        { ar: 'دراسة الحديث النبوي الشريف', en: 'Study of Prophetic Hadith' },
+        { ar: 'السيرة النبوية والتاريخ الإسلامي', en: 'Prophetic biography and Islamic history' },
+      ],
+      ageAr: 'جميع المراحل', ageEn: 'All levels',
+      hoursAr: '٨ ساعات أسبوعياً', hoursEn: '8 hours weekly',
+    },
+    {
+      tabAr: 'العلوم الحديثة', tabEn: 'Modern Sciences',
+      titleAr: 'برنامج العلوم الحديثة', titleEn: 'Modern Sciences Program',
+      descAr: 'منهج أكاديمي متكامل معتمد يشمل الرياضيات والعلوم الطبيعية والتقنية، لإعداد طلاب قادرين على المنافسة أكاديمياً.',
+      descEn: 'An integrated, accredited academic curriculum including mathematics, natural sciences, and technology, preparing students to compete academically.',
+      features: [
+        { ar: 'الرياضيات — من الأساسيات إلى الجبر', en: 'Mathematics — from basics to algebra' },
+        { ar: 'العلوم الطبيعية والبيولوجيا', en: 'Natural sciences and biology' },
+        { ar: 'مقدمة في البرمجة والحاسوب', en: 'Introduction to programming and computing' },
+        { ar: 'مختبر علوم مجهّز', en: 'Equipped science laboratory' },
+      ],
+      ageAr: 'الصف الأول — السادس', ageEn: 'Grades 1-6',
+      hoursAr: '١٢ ساعة أسبوعياً', hoursEn: '12 hours weekly',
+    },
+    {
+      tabAr: 'اللغات', tabEn: 'Languages',
+      titleAr: 'برنامج اللغات', titleEn: 'Languages Program',
+      descAr: 'تعليم ثلاث لغات أساسية مع التركيز على المهارات الأربع: القراءة والكتابة والاستماع والمحادثة.',
+      descEn: 'Teaching three core languages with focus on four skills: reading, writing, listening, and conversation.',
+      features: [
+        { ar: 'اللغة العربية — نحو وصرف وبلاغة', en: 'Arabic — grammar, morphology, and rhetoric' },
+        { ar: 'اللغة الإنجليزية — محادثة وكتابة', en: 'English — conversation and writing' },
+        { ar: 'اللغة العبرية — تواصل عملي', en: 'Hebrew — practical communication' },
+        { ar: 'أنشطة لغوية تفاعلية', en: 'Interactive language activities' },
+      ],
+      ageAr: 'جميع المراحل', ageEn: 'All levels',
+      hoursAr: '٦ ساعات أسبوعياً', hoursEn: '6 hours weekly',
+    },
+  ];
+
+  const p = programs[activeTab];
+
+  return (
+    <PageShell activePage="programs.html">
+      <div style={{
+        background: 'var(--green-800)', color: '#fff',
+        padding: 'clamp(48px,8vw,80px) 24px', textAlign: 'center',
+        position: 'relative', overflow: 'hidden',
+      }}>
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.05, backgroundImage: 'url(img/pattern-girih.svg)', backgroundSize: '140px' }}/>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <SectionEyebrow><T ar="ماذا نقدّم" en="What We Offer"/></SectionEyebrow>
+          <h1 style={{ fontFamily: 'Reem Kufi', fontSize: 'clamp(28px,5vw,48px)', fontWeight: 700, margin: '16px 0 0', lineHeight: 1.2 }}>
+            <T ar="البرامج التعليمية" en="Educational Programs"/>
+          </h1>
+        </div>
+      </div>
+
+      <Section>
+        {/* Tab bar */}
+        <div style={{
+          display: 'flex', gap: 4, marginBottom: 32, padding: 4,
+          background: 'var(--bg-card)', borderRadius: 10, border: '1px solid var(--border)',
+          overflowX: 'auto',
+        }}>
+          {programs.map((pr, i) => (
+            <button key={i} onClick={() => setActiveTab(i)} style={{
+              flex: 1, padding: '12px 8px', textAlign: 'center',
+              fontFamily: 'Reem Kufi', fontSize: 13, fontWeight: 600,
+              background: i === activeTab ? 'var(--accent)' : 'transparent',
+              color: i === activeTab ? 'var(--on-accent)' : 'var(--fg-3)',
+              border: 'none', borderRadius: 8, cursor: 'pointer',
+              whiteSpace: 'nowrap', minWidth: 'fit-content',
+              transition: 'all 0.2s',
+            }}>
+              <T ar={pr.tabAr} en={pr.tabEn}/>
+            </button>
+          ))}
+        </div>
+
+        {/* Active program */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 32 }}>
+          <div>
+            <SectionEyebrow><T ar={p.tabAr} en={p.tabEn}/></SectionEyebrow>
+            <h2 style={{ fontFamily: 'Reem Kufi', fontSize: 28, fontWeight: 700, color: 'var(--fg-1)', margin: '8px 0 16px', lineHeight: 1.3 }}>
+              <T ar={p.titleAr} en={p.titleEn}/>
+            </h2>
+            <p style={{ fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.85 }}>
+              <T ar={p.descAr} en={p.descEn}/>
+            </p>
+            <div style={{ display: 'flex', gap: 16, marginTop: 20 }}>
+              <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, padding: '10px 16px' }}>
+                <div style={{ fontSize: 10, color: 'var(--accent-warm)', fontFamily: 'Reem Kufi', letterSpacing: '0.12em' }}>
+                  <T ar="الفئة العمرية" en="AGE GROUP"/>
+                </div>
+                <div style={{ fontFamily: 'Reem Kufi', fontSize: 14, fontWeight: 600, color: 'var(--fg-1)', marginTop: 2 }}>
+                  <T ar={p.ageAr} en={p.ageEn}/>
+                </div>
+              </div>
+              <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, padding: '10px 16px' }}>
+                <div style={{ fontSize: 10, color: 'var(--accent-warm)', fontFamily: 'Reem Kufi', letterSpacing: '0.12em' }}>
+                  <T ar="الساعات" en="HOURS"/>
+                </div>
+                <div style={{ fontFamily: 'Reem Kufi', fontSize: 14, fontWeight: 600, color: 'var(--fg-1)', marginTop: 2 }}>
+                  <T ar={p.hoursAr} en={p.hoursEn}/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style={{ fontFamily: 'Reem Kufi', fontSize: 14, fontWeight: 600, color: 'var(--fg-1)', marginBottom: 16 }}>
+              <T ar="أبرز المميزات" en="Key Features"/>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {p.features.map((f, i) => (
+                <div key={i} style={{
+                  display: 'flex', gap: 12, alignItems: 'flex-start',
+                  background: 'var(--bg-card)', border: '1px solid var(--border)',
+                  borderRadius: 10, padding: '14px 16px',
+                }}>
+                  <div style={{
+                    width: 28, height: 28, borderRadius: 999, flexShrink: 0,
+                    background: 'color-mix(in srgb, var(--accent) 12%, transparent)',
+                    color: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 14, fontWeight: 700,
+                  }}>✓</div>
+                  <div style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.6, paddingTop: 3 }}>
+                    <T ar={f.ar} en={f.en}/>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Schedule overview */}
+      <Section bg="var(--bg-elev)">
+        <div style={{ textAlign: 'center' }}>
+          <SectionEyebrow><T ar="الجدول اليومي" en="Daily Schedule"/></SectionEyebrow>
+          <SectionTitle><T ar="يوم في المدرسة" en="A Day at School"/></SectionTitle>
+        </div>
+        <div style={{ maxWidth: 600, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {[
+            { t: '٧:٣٠', tEn: '7:30', ar: 'صلاة الضحى والأذكار', en: 'Duha prayer and morning adhkar' },
+            { t: '٨:٠٠', tEn: '8:00', ar: 'حلقة تحفيظ القرآن', en: 'Quran memorization circle' },
+            { t: '٩:٣٠', tEn: '9:30', ar: 'الحصة الأولى — رياضيات', en: 'First period — Mathematics' },
+            { t: '١٠:٣٠', tEn: '10:30', ar: 'استراحة ونشاط', en: 'Break and activity' },
+            { t: '١١:٠٠', tEn: '11:00', ar: 'العلوم الشرعية', en: 'Islamic studies' },
+            { t: '١٢:٠٠', tEn: '12:00', ar: 'صلاة الظهر', en: 'Dhuhr prayer' },
+            { t: '١٢:٣٠', tEn: '12:30', ar: 'اللغات', en: 'Languages' },
+            { t: '١:٣٠', tEn: '1:30', ar: 'انصراف', en: 'Dismissal' },
+          ].map((s, i) => (
+            <div key={i} style={{
+              display: 'flex', alignItems: 'center', gap: 16,
+              background: 'var(--bg-card)', border: '1px solid var(--border)',
+              borderRadius: 10, padding: '12px 16px',
+            }}>
+              <div style={{ fontFamily: 'Reem Kufi', fontSize: 14, fontWeight: 700, color: 'var(--accent)', width: 44, fontVariantNumeric: 'tabular-nums' }}>
+                <T ar={s.t} en={s.tEn}/>
+              </div>
+              <div style={{ width: 1, height: 20, background: 'var(--border)' }}/>
+              <div style={{ fontSize: 14, color: 'var(--fg-2)' }}><T ar={s.ar} en={s.en}/></div>
+            </div>
+          ))}
+        </div>
+      </Section>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<ProgramsPage/>);
+</script>
+</body>
+</html>

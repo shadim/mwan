@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" fill="none">
+  
+  <g transform="translate(10,10)">
+    <circle cx="60" cy="60" r="58" fill="none" stroke="#C9A24A" stroke-width="1.6"></circle>
+    <path d="M30 82 Q60 74 90 82 L90 92 Q60 84 30 92 Z" fill="#E8C76B"></path>
+    <path d="M42 82 L42 52 Q42 36 60 36 Q78 36 78 52 L78 82" stroke="#E8C76B" stroke-width="1.8" fill="none" stroke-linecap="round"></path>
+    <path d="M60 46 L62.6 54 L70.8 54 L64.1 59 L66.7 67 L60 62 L53.3 67 L55.9 59 L49.2 54 L57.4 54 Z" fill="#E8C76B"></path>
+  </g>
+  
+  <text x="140" y="66" font-family="Reem Kufi, sans-serif" font-weight="700" font-size="38" fill="#E6E6E6" direction="rtl">المهاجرين والأنصار</text>
+  <text x="140" y="104" font-family="Reem Kufi, sans-serif" font-weight="500" font-size="18" fill="#C9A24A" letter-spacing="2">MADRASA  ·  EST. 1445H</text>
+</svg>

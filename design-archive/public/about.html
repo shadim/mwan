@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<title>المهاجرين والأنصار — عنّا</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<style>html,body{margin:0;padding:0} *{box-sizing:border-box} img{max-width:100%;display:block}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" data-presets="react">
+
+function AboutPage() {
+  const values = [
+    { ar: 'الإخلاص', en: 'Sincerity', descAr: 'نسعى لتحقيق رضا الله في كل عمل تعليمي وتربوي', descEn: 'We strive for God\'s pleasure in every educational effort' },
+    { ar: 'الإتقان', en: 'Excellence', descAr: 'نلتزم بأعلى معايير الجودة في التعليم والإدارة', descEn: 'Committed to the highest quality standards in education and management' },
+    { ar: 'الشورى', en: 'Consultation', descAr: 'نؤمن بالعمل الجماعي والتشاور في اتخاذ القرارات', descEn: 'We believe in teamwork and consultation in decision-making' },
+    { ar: 'الرحمة', en: 'Compassion', descAr: 'نعامل طلابنا بالرفق واللين والتفهم', descEn: 'We treat our students with kindness, gentleness, and understanding' },
+    { ar: 'الأمانة', en: 'Trustworthiness', descAr: 'نحافظ على ثقة أولياء الأمور والمجتمع', descEn: 'We uphold the trust of parents and the community' },
+    { ar: 'التجديد', en: 'Innovation', descAr: 'نواكب التطور مع الحفاظ على الثوابت', descEn: 'We keep pace with progress while preserving fundamentals' },
+  ];
+
+  const timeline = [
+    { y: '١٤٢٦', yEn: '2005', ar: 'تأسيس المدرسة بـ ٣٥ طالباً', en: 'School founded with 35 students' },
+    { y: '١٤٣٠', yEn: '2009', ar: 'افتتاح مبنى جديد وقسم البنات', en: 'New building and girls section opened' },
+    { y: '١٤٣٥', yEn: '2014', ar: 'اعتماد رسمي من وزارة التربية', en: 'Official accreditation from Ministry of Education' },
+    { y: '١٤٤٠', yEn: '2019', ar: 'إطلاق برنامج العلوم الحديثة المتكامل', en: 'Launch of integrated modern sciences program' },
+    { y: '١٤٤٥', yEn: '2024', ar: 'تجاوز ٤٨٠ طالباً و٣٢ معلماً', en: 'Surpassed 480 students and 32 teachers' },
+    { y: '١٤٤٧', yEn: '2026', ar: 'بناء قاعة القرآن الكريم', en: 'Building the Quran Hall' },
+  ];
+
+  return (
+    <PageShell activePage="about.html">
+      {/* Hero banner */}
+      <div style={{
+        background: 'var(--green-800)', color: '#fff',
+        padding: 'clamp(48px,8vw,80px) 24px', textAlign: 'center',
+        position: 'relative', overflow: 'hidden',
+      }}>
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.05, backgroundImage: 'url(img/pattern-girih.svg)', backgroundSize: '140px' }}/>
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 700, margin: '0 auto' }}>
+          <SectionEyebrow><T ar="تعرّف علينا" en="Get to Know Us"/></SectionEyebrow>
+          <h1 style={{ fontFamily: 'Reem Kufi', fontSize: 'clamp(28px,5vw,48px)', fontWeight: 700, margin: '16px 0 0', lineHeight: 1.2 }}>
+            <T ar="رسالتنا ورؤيتنا" en="Our Mission & Vision"/>
+          </h1>
+        </div>
+      </div>
+
+      {/* Mission & Vision */}
+      <Section>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
+          {[
+            { titleAr: 'رسالتنا', titleEn: 'Our Mission', ar: 'تقديم تعليم قرآني وأكاديمي متميز يبني جيلاً واعياً متمسكاً بدينه ومنفتحاً على العلوم الحديثة، في بيئة تربوية آمنة تراعي الفروق الفردية وتنمي المهارات الحياتية.', en: 'To provide distinguished Quranic and academic education that builds a conscious generation committed to their faith and open to modern sciences, in a safe educational environment that considers individual differences and develops life skills.' },
+            { titleAr: 'رؤيتنا', titleEn: 'Our Vision', ar: 'أن نكون المؤسسة التعليمية الرائدة في الجمع بين التعليم الشرعي والأكاديمي، ونموذجاً يُحتذى في التربية الإسلامية المعاصرة على مستوى المنطقة.', en: 'To be the leading educational institution in combining Islamic and academic education, and a model for contemporary Islamic education at the regional level.' },
+          ].map((item, i) => (
+            <div key={i} style={{
+              background: 'var(--bg-card)', border: '1px solid var(--border)',
+              borderRadius: 14, padding: 28,
+            }}>
+              <div style={{ fontFamily: 'Reem Kufi', fontSize: 11, color: 'var(--accent-warm)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 8 }}>
+                <T ar={item.titleAr} en={item.titleEn}/>
+              </div>
+              <p style={{ fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.85, margin: 0 }}>
+                <T ar={item.ar} en={item.en}/>
+              </p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* School photo */}
+      <Section bg="var(--bg-elev)" style={{ padding: '0 24px' }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', borderRadius: 16, overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
+          <img src="img/school-front.jpeg" alt="School building" style={{ width: '100%', height: 'auto' }}/>
+        </div>
+      </Section>
+
+      {/* Values */}
+      <Section>
+        <div style={{ textAlign: 'center', marginBottom: 36 }}>
+          <SectionEyebrow><T ar="قيمنا" en="Our Values"/></SectionEyebrow>
+          <SectionTitle><T ar="المبادئ التي نسير عليها" en="The Principles We Live By"/></SectionTitle>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+          {values.map((v, i) => (
+            <div key={i} style={{
+              background: 'var(--bg-card)', border: '1px solid var(--border)',
+              borderRadius: 12, padding: '22px 18px', textAlign: 'center',
+            }}>
+              <Star8 size={20} color="var(--accent)"/>
+              <div style={{ fontFamily: 'Reem Kufi', fontSize: 16, fontWeight: 600, color: 'var(--fg-1)', marginTop: 10 }}>
+                <T ar={v.ar} en={v.en}/>
+              </div>
+              <div style={{ fontSize: 12, color: 'var(--fg-3)', marginTop: 6, lineHeight: 1.6 }}>
+                <T ar={v.descAr} en={v.descEn}/>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Timeline */}
+      <Section bg="var(--bg-elev)">
+        <div style={{ textAlign: 'center', marginBottom: 36 }}>
+          <SectionEyebrow><T ar="مسيرتنا" en="Our Journey"/></SectionEyebrow>
+          <SectionTitle><T ar="محطات في تاريخ المدرسة" en="Milestones in Our History"/></SectionTitle>
+        </div>
+        <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative' }}>
+          <div style={{ position: 'absolute', top: 0, bottom: 0, right: '50%', width: 2, background: 'var(--border)', transform: 'translateX(1px)' }}/>
+          {timeline.map((t, i) => (
+            <div key={i} style={{
+              display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24,
+              flexDirection: i % 2 === 0 ? 'row' : 'row-reverse',
+            }}>
+              <div style={{ flex: 1, textAlign: i % 2 === 0 ? 'left' : 'right' }}>
+                <div style={{ fontFamily: 'Reem Kufi', fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.6 }}>
+                  <T ar={t.ar} en={t.en}/>
+                </div>
+              </div>
+              <div style={{
+                width: 48, height: 48, borderRadius: 999, flexShrink: 0,
+                background: 'var(--accent)', color: 'var(--on-accent)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: 'Reem Kufi', fontSize: 11, fontWeight: 700,
+                boxShadow: 'var(--shadow-accent)', zIndex: 1,
+              }}>
+                <T ar={t.y} en={t.yEn}/>
+              </div>
+              <div style={{ flex: 1 }}/>
+            </div>
+          ))}
+        </div>
+      </Section>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<AboutPage/>);
+</script>
+</body>
+</html>

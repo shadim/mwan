@@ -1,0 +1,105 @@
+/* ============================================================
+   Almohajirin wel Ansar — Design Tokens (production)
+   Copied from design-archive/colors_and_type.css
+   Mint Garden theme as default
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  /* Green scale — mint green */
+  --green-050: #E8F5F0;
+  --green-100: #C8EAD9;
+  --green-200: #A0D9BE;
+  --green-300: #6CC4A0;
+  --green-500: #3BA67E;
+  --green-600: #2D9269;
+  --green-700: #237A56;
+  --green-800: #1B6045;
+  --green-900: #134A34;
+
+  /* Brass */
+  --brass-300: #D9B765;
+  --brass-500: #B8923A;
+  --brass-700: #8A6E2A;
+
+  /* Semantic — mint theme (default) */
+  --bg: var(--green-050);
+  --bg-elev: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: var(--green-100);
+  --bg-hero: var(--green-050);
+  --border: rgba(45,146,105,0.15);
+  --border-strong: rgba(45,146,105,0.28);
+  --divider: rgba(45,146,105,0.10);
+
+  --fg-1: var(--green-900);
+  --fg-2: #2E4A3C;
+  --fg-3: #6B8E7E;
+  --fg-accent: var(--green-600);
+  --fg-muted: #8BADA0;
+
+  --accent: var(--green-600);
+  --accent-hover: var(--green-700);
+  --accent-press: var(--green-800);
+  --accent-soft: var(--green-100);
+  --on-accent: #ffffff;
+  --accent-warm: var(--brass-500);
+  --accent-warm-hover: var(--brass-700);
+
+  --success: var(--green-600);
+  --danger: #B8453A;
+  --warn: #C9944A;
+
+  /* Typography */
+  --font-arabic-body: 'Tajawal', 'Segoe UI', system-ui, sans-serif;
+  --font-arabic-display: 'Reem Kufi', 'Tajawal', sans-serif;
+  --font-arabic-quran: 'Amiri', 'Times New Roman', serif;
+  --font-latin-body: 'Inter', system-ui, sans-serif;
+  --font-latin-display: 'Cormorant Garamond', 'Amiri', serif;
+
+  /* Scale */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 30px;
+  --text-3xl: 38px;
+  --text-4xl: 48px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(45,146,105,0.06);
+  --shadow-md: 0 6px 18px rgba(45,146,105,0.10);
+  --shadow-lg: 0 20px 48px rgba(45,146,105,0.14);
+  --shadow-accent: 0 6px 18px rgba(45,146,105,0.25);
+  --ring-focus: 0 0 0 3px rgba(45,146,105,0.35);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(.2,.0,.0,1);
+  --dur-fast: 140ms;
+  --dur-base: 220ms;
+
+  /* Layout */
+  --content-max: 1200px;
+  --gutter: clamp(16px, 4vw, 32px);
+}

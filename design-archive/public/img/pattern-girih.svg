@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <pattern id="girih" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+      
+      <g stroke="currentColor" stroke-width=".8" fill="none" opacity=".8">
+        <path d="M40 10 L50 30 L70 30 L55 45 L60 65 L40 55 L20 65 L25 45 L10 30 L30 30 Z"></path>
+        <path d="M0 40 L10 30 M80 40 L70 30 M0 40 L10 50 M80 40 L70 50 M40 0 L30 10 M40 0 L50 10 M40 80 L30 70 M40 80 L50 70"></path>
+        <circle cx="40" cy="40" r="6"></circle>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#girih)" color="#E8C76B"></rect>
+</svg>

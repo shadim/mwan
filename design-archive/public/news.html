@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<title>المهاجرين والأنصار — الأخبار</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<style>html,body{margin:0;padding:0} *{box-sizing:border-box} img{max-width:100%;display:block}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" data-presets="react">
+
+function NewsPage() {
+  const [filter, setFilter] = React.useState('all');
+
+  const categories = [
+    { id: 'all', ar: 'الكل', en: 'All' },
+    { id: 'academic', ar: 'أكاديمي', en: 'Academic' },
+    { id: 'events', ar: 'فعاليات', en: 'Events' },
+    { id: 'quran', ar: 'قرآن', en: 'Quran' },
+    { id: 'community', ar: 'مجتمع', en: 'Community' },
+  ];
+
+  const news = [
+    { cat: 'quran', dateAr: '١٨ رمضان ١٤٤٧', dateEn: 'Ramadan 18, 1447', titleAr: 'تخريج ١٢ حافظاً للقرآن الكريم', titleEn: '12 Quran Huffaz Graduate', descAr: 'أقامت المدرسة حفل تخريج الدفعة السابعة من حفاظ القرآن الكريم، بحضور أولياء الأمور والمجتمع المحلي.', descEn: 'The school held the graduation ceremony for the seventh class of Quran memorizers, attended by parents and the local community.', featured: true },
+    { cat: 'events', dateAr: '١٥ رمضان ١٤٤٧', dateEn: 'Ramadan 15, 1447', titleAr: 'إفطار جماعي لأولياء الأمور', titleEn: 'Community Iftar for Parents', descAr: 'نظمت المدرسة إفطاراً جماعياً ضم أكثر من ٢٠٠ شخص من أولياء الأمور والمعلمين وأعضاء المجتمع.', descEn: 'The school organized a community iftar gathering over 200 parents, teachers, and community members.' },
+    { cat: 'academic', dateAr: '١٠ رمضان ١٤٤٧', dateEn: 'Ramadan 10, 1447', titleAr: 'نتائج امتحانات الفصل الثاني', titleEn: 'Second Semester Exam Results', descAr: 'أعلنت المدرسة عن نتائج امتحانات الفصل الثاني بنسبة نجاح ٩٧٪ وتفوّق ملحوظ في مادة الرياضيات.', descEn: 'The school announced second semester results with a 97% pass rate and notable excellence in mathematics.' },
+    { cat: 'community', dateAr: '٥ رمضان ١٤٤٧', dateEn: 'Ramadan 5, 1447', titleAr: 'حملة بناء قاعة القرآن تتجاوز ٦٠٪', titleEn: 'Quran Hall Campaign Exceeds 60%', descAr: 'بفضل الله ثم بدعم المجتمع الكريم، تجاوزت حملة التبرعات لبناء قاعة القرآن نسبة ٦٠٪ من الهدف.', descEn: 'By God\'s grace and the generous community support, the Quran Hall donation campaign has exceeded 60% of its goal.' },
+    { cat: 'events', dateAr: '٢٨ شعبان ١٤٤٧', dateEn: 'Sha\'ban 28, 1447', titleAr: 'يوم رياضي مفتوح', titleEn: 'Open Sports Day', descAr: 'أقامت المدرسة يوماً رياضياً مفتوحاً شارك فيه الطلاب وأولياء الأمور في مسابقات متنوعة.', descEn: 'The school held an open sports day with students and parents participating in various competitions.' },
+    { cat: 'academic', dateAr: '٢٠ شعبان ١٤٤٧', dateEn: 'Sha\'ban 20, 1447', titleAr: 'ورشة تدريبية للمعلمين', titleEn: 'Teacher Training Workshop', descAr: 'عقدت المدرسة ورشة تدريبية للمعلمين حول أساليب التعليم التفاعلي واستخدام التقنية في الفصل.', descEn: 'The school held a training workshop for teachers on interactive teaching methods and classroom technology use.' },
+  ];
+
+  const filtered = filter === 'all' ? news : news.filter(n => n.cat === filter);
+
+  return (
+    <PageShell activePage="news.html">
+      <div style={{
+        background: 'var(--green-800)', color: '#fff',
+        padding: 'clamp(48px,8vw,80px) 24px', textAlign: 'center',
+        position: 'relative', overflow: 'hidden',
+      }}>
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.05, backgroundImage: 'url(img/pattern-girih.svg)', backgroundSize: '140px' }}/>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <SectionEyebrow><T ar="آخر المستجدات" en="Latest Updates"/></SectionEyebrow>
+          <h1 style={{ fontFamily: 'Reem Kufi', fontSize: 'clamp(28px,5vw,48px)', fontWeight: 700, margin: '16px 0 0' }}>
+            <T ar="الأخبار والفعاليات" en="News & Events"/>
+          </h1>
+        </div>
+      </div>
+
+      <Section>
+        {/* Filter chips */}
+        <div style={{ display: 'flex', gap: 8, marginBottom: 32, flexWrap: 'wrap' }}>
+          {categories.map(c => (
+            <button key={c.id} onClick={() => setFilter(c.id)} style={{
+              padding: '8px 18px', borderRadius: 999, fontFamily: 'Reem Kufi',
+              fontSize: 13, fontWeight: 600, cursor: 'pointer', border: 'none',
+              background: filter === c.id ? 'var(--accent)' : 'var(--bg-card)',
+              color: filter === c.id ? 'var(--on-accent)' : 'var(--fg-2)',
+              boxShadow: filter === c.id ? 'var(--shadow-accent)' : 'var(--shadow-sm)',
+              transition: 'all 0.2s',
+            }}>
+              <T ar={c.ar} en={c.en}/>
+            </button>
+          ))}
+        </div>
+
+        {/* Featured card */}
+        {filter === 'all' && (
+          <div style={{
+            background: 'linear-gradient(135deg, var(--green-700), var(--green-800))',
+            borderRadius: 16, padding: 'clamp(24px,4vw,40px)', color: '#fff',
+            marginBottom: 24, position: 'relative', overflow: 'hidden',
+          }}>
+            <div style={{ position: 'absolute', inset: 0, opacity: 0.06, backgroundImage: 'url(img/pattern-girih.svg)', backgroundSize: '100px' }}/>
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <span style={{
+                display: 'inline-block', padding: '4px 12px', borderRadius: 999,
+                background: 'var(--brass-300)', color: 'var(--green-900)',
+                fontSize: 11, fontFamily: 'Reem Kufi', fontWeight: 600, marginBottom: 12,
+              }}><T ar="خبر مميز" en="Featured"/></span>
+              <h2 style={{ fontFamily: 'Reem Kufi', fontSize: 'clamp(20px,3vw,28px)', fontWeight: 700, margin: '0 0 8px', lineHeight: 1.3 }}>
+                <T ar={news[0].titleAr} en={news[0].titleEn}/>
+              </h2>
+              <p style={{ fontSize: 14, opacity: 0.85, lineHeight: 1.8, margin: 0, maxWidth: 600 }}>
+                <T ar={news[0].descAr} en={news[0].descEn}/>
+              </p>
+              <div style={{ fontSize: 12, color: 'var(--brass-300)', marginTop: 12, fontFamily: 'Reem Kufi' }}>
+                <T ar={news[0].dateAr} en={news[0].dateEn}/>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* News grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 16 }}>
+          {(filter === 'all' ? filtered.slice(1) : filtered).map((n, i) => (
+            <div key={i} style={{
+              background: 'var(--bg-card)', border: '1px solid var(--border)',
+              borderRadius: 14, padding: 22, cursor: 'pointer',
+              transition: 'box-shadow 0.2s, transform 0.2s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.boxShadow='var(--shadow-md)'; e.currentTarget.style.transform='translateY(-2px)'; }}
+            onMouseLeave={e => { e.currentTarget.style.boxShadow='none'; e.currentTarget.style.transform='none'; }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                <span style={{
+                  padding: '3px 10px', borderRadius: 999, fontSize: 10.5,
+                  fontFamily: 'Reem Kufi', fontWeight: 500,
+                  background: 'color-mix(in srgb, var(--accent) 12%, transparent)', color: 'var(--accent)',
+                }}>
+                  <T ar={categories.find(c=>c.id===n.cat)?.ar} en={categories.find(c=>c.id===n.cat)?.en}/>
+                </span>
+                <span style={{ fontSize: 11, color: 'var(--fg-3)', fontFamily: 'Reem Kufi' }}>
+                  <T ar={n.dateAr} en={n.dateEn}/>
+                </span>
+              </div>
+              <h3 style={{ fontFamily: 'Reem Kufi', fontSize: 16, fontWeight: 600, color: 'var(--fg-1)', margin: '0 0 8px', lineHeight: 1.4 }}>
+                <T ar={n.titleAr} en={n.titleEn}/>
+              </h3>
+              <p style={{ fontSize: 13, color: 'var(--fg-3)', lineHeight: 1.7, margin: 0 }}>
+                <T ar={n.descAr} en={n.descEn}/>
+              </p>
+            </div>
+          ))}
+        </div>
+      </Section>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<NewsPage/>);
+</script>
+</body>
+</html>
