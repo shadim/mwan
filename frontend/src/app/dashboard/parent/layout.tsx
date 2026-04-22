@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth-context';
 import { AppShell } from '@/components/app-shell';
 
 const tabs = [
@@ -11,6 +14,17 @@ const tabs = [
 ];
 
 export default function ParentLayout({ children }: { children: React.ReactNode }) {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && (!user || user.role !== 'parent')) {
+      router.replace('/login');
+    }
+  }, [user, loading, router]);
+
+  if (loading || !user || user.role !== 'parent') return null;
+
   return (
     <AppShell tabs={tabs} role="واجهة ولي الأمر" roleEn="Parent Portal">
       {children}

@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 import { Request, Response, NextFunction } from 'express';
 import { query } from './db';
 
@@ -38,14 +39,30 @@ export async function comparePassword(password: string, hash: string): Promise<b
   return bcrypt.compare(password, hash);
 }
 
-// Store refresh token hash in DB
+function hashToken(token: string): string {
+  return crypto.createHash('sha256').update(token).digest('hex');
+}
+
+// Store deterministic SHA-256 hash for DB-backed revocation lookup
 export async function storeRefreshToken(userId: string, token: string): Promise<void> {
-  const tokenHash = await bcrypt.hash(token, 4); // light hash for lookup
+  const tokenHash = hashToken(token);
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
   await query(
     'INSERT INTO refresh_tokens (user_id, token_hash, expires_at) VALUES ($1, $2, $3)',
     [userId, tokenHash, expiresAt]
   );
+}
+
+// Validate refresh token against DB (checks existence + expiry + not revoked)
+export async function validateRefreshToken(userId: string, token: string): Promise<boolean> {
+  const tokenHash = hashToken(token);
+  const result = await query(
+    `SELECT 1 FROM refresh_tokens
+     WHERE token_hash = $1 AND user_id = $2 AND expires_at > NOW()
+     LIMIT 1`,
+    [tokenHash, userId]
+  );
+  return result.rows.length > 0;
 }
 
 // Revoke all refresh tokens for user

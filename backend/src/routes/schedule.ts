@@ -34,7 +34,7 @@ router.get('/', async (req: AuthRequest, res: Response) => {
   }
 });
 
-// GET /api/events
+// GET /api/schedule/events
 router.get('/events', async (req: AuthRequest, res: Response) => {
   try {
     const result = await query(`

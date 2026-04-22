@@ -8,7 +8,9 @@ router.use(authenticate);
 // GET /api/attendance?sectionId=&date=
 router.get('/', async (req: AuthRequest, res: Response) => {
   try {
+    const { role, userId } = req.user!;
     const { sectionId, date, studentId } = req.query;
+
     let sql = `
       SELECT a.*, u.name_ar, u.name_en, s.student_number
       FROM attendance a
@@ -18,6 +20,28 @@ router.get('/', async (req: AuthRequest, res: Response) => {
     `;
     const params: any[] = [];
     let idx = 1;
+
+    // Role-scoped constraints
+    if (role === 'teacher') {
+      // Only sections this teacher is assigned to
+      sql += ` AND EXISTS (
+        SELECT 1 FROM teacher_sections ts JOIN teachers t ON ts.teacher_id = t.id
+        WHERE ts.section_id = a.section_id AND t.user_id = $${idx++}
+      )`;
+      params.push(userId);
+    } else if (role === 'parent') {
+      // Only own children
+      sql += ` AND EXISTS (
+        SELECT 1 FROM parent_students ps JOIN parents p ON ps.parent_id = p.id
+        WHERE ps.student_id = a.student_id AND p.user_id = $${idx++}
+      )`;
+      params.push(userId);
+    } else if (role === 'student') {
+      // Only self
+      sql += ` AND s.user_id = $${idx++}`;
+      params.push(userId);
+    }
+    // manager: no extra constraint
 
     if (sectionId) { sql += ` AND a.section_id = $${idx++}`; params.push(sectionId); }
     if (date) { sql += ` AND a.date = $${idx++}`; params.push(date); }
