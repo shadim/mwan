@@ -3,9 +3,17 @@ import { OAuth2Client } from 'google-auth-library';
 import { query } from '../db';
 import {
   comparePassword, generateAccessToken, generateRefreshToken,
-  storeRefreshToken, verifyRefreshToken, revokeUserTokens,
-  hashPassword, authenticate, AuthRequest,
+  storeRefreshToken, validateRefreshToken, verifyRefreshToken,
+  revokeUserTokens, hashPassword, authenticate, AuthRequest,
 } from '../auth';
+
+const COOKIE_OPTS = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'strict' as const,
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+  path: '/',
+};
 
 const router = Router();
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -45,9 +53,9 @@ router.post('/login', async (req: Request, res: Response) => {
     // Update last login
     await query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
 
+    res.cookie('refreshToken', refreshToken, COOKIE_OPTS);
     res.json({
       accessToken,
-      refreshToken,
       user: {
         id: user.id,
         email: user.email,
@@ -81,7 +89,7 @@ router.post('/google', async (req: Request, res: Response) => {
 
     // Find or create user
     let result = await query(
-      'SELECT id, email, role, name_ar, name_en FROM users WHERE google_id = $1 OR email = $2',
+      'SELECT id, email, google_id, role, name_ar, name_en FROM users WHERE google_id = $1 OR email = $2',
       [googlePayload.sub, googlePayload.email]
     );
 
@@ -113,9 +121,9 @@ router.post('/google', async (req: Request, res: Response) => {
     const refreshToken = generateRefreshToken(payload);
     await storeRefreshToken(user.id, refreshToken);
 
+    res.cookie('refreshToken', refreshToken, COOKIE_OPTS);
     res.json({
       accessToken,
-      refreshToken,
       user: { id: user.id, email: user.email, role: user.role, nameAr: user.name_ar, nameEn: user.name_en },
     });
   } catch (err) {
@@ -124,19 +132,26 @@ router.post('/google', async (req: Request, res: Response) => {
   }
 });
 
-// POST /api/auth/refresh — refresh access token
+// POST /api/auth/refresh — refresh access token (reads HttpOnly cookie)
 router.post('/refresh', async (req: Request, res: Response) => {
   try {
-    const { refreshToken } = req.body;
+    const refreshToken = req.cookies?.refreshToken;
     if (!refreshToken) {
-      return res.status(400).json({ error: 'Refresh token required' });
+      return res.status(401).json({ error: 'No refresh token' });
     }
 
     const decoded = verifyRefreshToken(refreshToken);
 
+    // Validate token exists in DB (not revoked, not expired)
+    const valid = await validateRefreshToken(decoded.userId, refreshToken);
+    if (!valid) {
+      res.clearCookie('refreshToken', { path: '/' });
+      return res.status(401).json({ error: 'Refresh token invalid or revoked' });
+    }
+
     // Verify user still active
     const result = await query(
-      'SELECT id, email, role, name_ar, name_en FROM users WHERE id = $1 AND is_active = true',
+      'SELECT id, email, role FROM users WHERE id = $1 AND is_active = true',
       [decoded.userId]
     );
     if (result.rows.length === 0) {
@@ -145,9 +160,14 @@ router.post('/refresh', async (req: Request, res: Response) => {
 
     const user = result.rows[0];
     const payload = { userId: user.id, role: user.role, email: user.email };
-    const newAccessToken = generateAccessToken(payload);
 
-    res.json({ accessToken: newAccessToken });
+    // Rotate: revoke old token, issue new one
+    await revokeUserTokens(user.id);
+    const newRefreshToken = generateRefreshToken(payload);
+    await storeRefreshToken(user.id, newRefreshToken);
+    res.cookie('refreshToken', newRefreshToken, COOKIE_OPTS);
+
+    res.json({ accessToken: generateAccessToken(payload) });
   } catch {
     return res.status(401).json({ error: 'Invalid refresh token' });
   }
@@ -159,6 +179,7 @@ router.post('/logout', authenticate, async (req: AuthRequest, res: Response) => 
     if (req.user) {
       await revokeUserTokens(req.user.userId);
     }
+    res.clearCookie('refreshToken', { path: '/' });
     res.json({ message: 'Logged out' });
   } catch (err) {
     res.status(500).json({ error: 'Internal server error' });

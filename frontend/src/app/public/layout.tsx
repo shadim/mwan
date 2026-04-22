@@ -1,7 +1,6 @@
 'use client';
 
 import { useI18n } from '@/lib/i18n-context';
-import { I18nProvider } from '@/lib/i18n-context';
 import { Star } from '@/components/ui';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -117,14 +116,12 @@ function Footer() {
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
-    <I18nProvider>
-      <div className="theme-mint" data-theme="mint" style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-        <UtilBar />
-        <Navbar />
-        {children}
-        <Footer />
-      </div>
-    </I18nProvider>
+    <div className="theme-mint" data-theme="mint" style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+      <UtilBar />
+      <Navbar />
+      {children}
+      <Footer />
+    </div>
   );
 }
 

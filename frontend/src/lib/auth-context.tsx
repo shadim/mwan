@@ -33,25 +33,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // On mount, try to restore session
+  // On mount, try to restore session via HttpOnly refresh cookie
   useEffect(() => {
-    const refreshToken = localStorage.getItem('refreshToken');
-    if (refreshToken) {
-      api('/auth/refresh', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ refreshToken }),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/auth/refresh`, {
+      method: 'POST',
+      credentials: 'include',
+    })
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then((data: any) => {
+        setTokens(data.accessToken);
+        return api('/auth/me');
       })
-        .then((data: any) => {
-          setTokens(data.accessToken, refreshToken);
-          return api('/auth/me');
-        })
-        .then((userData: User) => setUser(userData))
-        .catch(() => clearTokens())
-        .finally(() => setLoading(false));
-    } else {
-      setLoading(false);
-    }
+      .then((userData: User) => setUser(userData))
+      .catch(() => clearTokens())
+      .finally(() => setLoading(false));
   }, []);
 
   const login = async (email: string, password: string) => {
@@ -60,7 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     }) as any;
-    setTokens(data.accessToken, data.refreshToken);
+    setTokens(data.accessToken);
     setUser(data.user);
   };
 
@@ -70,7 +65,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ credential }),
     }) as any;
-    setTokens(data.accessToken, data.refreshToken);
+    setTokens(data.accessToken);
     setUser(data.user);
   };
 

@@ -51,7 +51,14 @@ router.put('/:studentId/:surahNumber', authorize('teacher', 'manager'), async (r
             WHEN hifz_streaks.last_activity_date = CURRENT_DATE THEN hifz_streaks.current_streak
             ELSE 1
           END,
-          longest_streak = GREATEST(hifz_streaks.longest_streak, hifz_streaks.current_streak + 1),
+          longest_streak = GREATEST(
+            hifz_streaks.longest_streak,
+            CASE
+              WHEN hifz_streaks.last_activity_date = CURRENT_DATE - 1 THEN hifz_streaks.current_streak + 1
+              WHEN hifz_streaks.last_activity_date = CURRENT_DATE THEN hifz_streaks.current_streak
+              ELSE 1
+            END
+          ),
           last_activity_date = CURRENT_DATE
       `, [studentId]);
     }

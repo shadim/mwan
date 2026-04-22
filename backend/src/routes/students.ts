@@ -57,10 +57,12 @@ router.get('/', async (req: AuthRequest, res: Response) => {
   }
 });
 
-// GET /api/students/:id
+// GET /api/students/:id — role-scoped
 router.get('/:id', async (req: AuthRequest, res: Response) => {
   try {
-    const result = await query(`
+    const { role, userId } = req.user!;
+    let result;
+    const BASE = `
       SELECT s.*, u.name_ar, u.name_en, u.email, u.phone,
              g.name_ar AS grade_ar, g.name_en AS grade_en,
              sec.name_ar AS section_ar, sec.name_en AS section_en
@@ -68,8 +70,29 @@ router.get('/:id', async (req: AuthRequest, res: Response) => {
       JOIN users u ON s.user_id = u.id
       LEFT JOIN sections sec ON s.section_id = sec.id
       LEFT JOIN grades g ON sec.grade_id = g.id
-      WHERE s.id = $1
-    `, [req.params.id]);
+    `;
+
+    if (role === 'manager') {
+      result = await query(`${BASE} WHERE s.id = $1`, [req.params.id]);
+    } else if (role === 'teacher') {
+      result = await query(`
+        ${BASE}
+        JOIN teacher_sections ts ON ts.section_id = sec.id
+        JOIN teachers t ON ts.teacher_id = t.id
+        WHERE s.id = $1 AND t.user_id = $2
+      `, [req.params.id, userId]);
+    } else if (role === 'parent') {
+      result = await query(`
+        ${BASE}
+        JOIN parent_students ps ON ps.student_id = s.id
+        JOIN parents p ON ps.parent_id = p.id
+        WHERE s.id = $1 AND p.user_id = $2
+      `, [req.params.id, userId]);
+    } else if (role === 'student') {
+      result = await query(`${BASE} WHERE s.id = $1 AND s.user_id = $2`, [req.params.id, userId]);
+    } else {
+      return res.status(403).json({ error: 'Access denied' });
+    }
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Student not found' });

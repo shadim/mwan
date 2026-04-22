@@ -1,34 +1,26 @@
-// API client with JWT auth + auto-refresh
+// API client with JWT auth + auto-refresh via HttpOnly cookie
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
 let accessToken: string | null = null;
 
-export function setTokens(access: string, refresh: string) {
+export function setTokens(access: string) {
   accessToken = access;
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('refreshToken', refresh);
-  }
+  // Refresh token is set as HttpOnly cookie by the server — never stored in JS
 }
 
 export function clearTokens() {
   accessToken = null;
-  if (typeof window !== 'undefined') {
-    localStorage.removeItem('refreshToken');
-  }
 }
 
 export function getAccessToken() { return accessToken; }
 
 async function refreshAccessToken(): Promise<string | null> {
-  const refreshToken = typeof window !== 'undefined' ? localStorage.getItem('refreshToken') : null;
-  if (!refreshToken) return null;
-
   try {
+    // Cookie is sent automatically; no body needed
     const res = await fetch(`${API_URL}/auth/refresh`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ refreshToken }),
+      credentials: 'include',
     });
     if (!res.ok) { clearTokens(); return null; }
     const data = await res.json();
@@ -54,14 +46,14 @@ export async function api<T = any>(
     headers['Authorization'] = `Bearer ${accessToken}`;
   }
 
-  let res = await fetch(url, { ...options, headers });
+  let res = await fetch(url, { ...options, headers, credentials: 'include' });
 
   // Auto-refresh on 401
   if (res.status === 401 && accessToken) {
     const newToken = await refreshAccessToken();
     if (newToken) {
       headers['Authorization'] = `Bearer ${newToken}`;
-      res = await fetch(url, { ...options, headers });
+      res = await fetch(url, { ...options, headers, credentials: 'include' });
     }
   }
 
