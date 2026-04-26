@@ -16,13 +16,15 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const dashboardFor = (role: string) => `/dashboard/${role}`;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
     try {
-      await login(email, password);
-      router.push('/');
+      const { user } = await login(email, password);
+      router.push(dashboardFor(user.role));
     } catch (err: any) {
       setError(err.message || t('خطأ في تسجيل الدخول', 'Login failed'));
     } finally {
@@ -32,8 +34,8 @@ export default function LoginPage() {
 
   const handleGoogleSuccess = async (response: any) => {
     try {
-      await loginWithGoogle(response.credential);
-      router.push('/');
+      const { user } = await loginWithGoogle(response.credential);
+      router.push(dashboardFor(user.role));
     } catch (err: any) {
       setError(err.message || t('خطأ في تسجيل الدخول بجوجل', 'Google login failed'));
     }
@@ -91,7 +93,7 @@ export default function LoginPage() {
           </div>
         </form>
 
-        <a href="/public" className={styles.publicLink}>
+        <a href="/" className={styles.publicLink}>
           {t('زيارة الموقع العام ←', 'Visit public site →')}
         </a>
       </div>

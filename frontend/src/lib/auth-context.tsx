@@ -11,19 +11,23 @@ interface User {
   nameEn: string;
 }
 
+interface AuthResult {
+  user: User;
+}
+
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  loginWithGoogle: (credential: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<AuthResult>;
+  loginWithGoogle: (credential: string) => Promise<AuthResult>;
   logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
-  login: async () => {},
-  loginWithGoogle: async () => {},
+  login: async () => ({ user: {} as User }),
+  loginWithGoogle: async () => ({ user: {} as User }),
   logout: async () => {},
 });
 
@@ -49,7 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .finally(() => setLoading(false));
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string): Promise<AuthResult> => {
     const data = await api('/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -57,9 +61,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }) as any;
     setTokens(data.accessToken);
     setUser(data.user);
+    return { user: data.user };
   };
 
-  const loginWithGoogle = async (credential: string) => {
+  const loginWithGoogle = async (credential: string): Promise<AuthResult> => {
     const data = await api('/auth/google', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -67,6 +72,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }) as any;
     setTokens(data.accessToken);
     setUser(data.user);
+    return { user: data.user };
   };
 
   const logout = async () => {
