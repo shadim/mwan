@@ -38,7 +38,7 @@ export default function HomePage() {
             <T ar="مدرسة قرآنية تعليمية تجمع بين الأصالة والعلوم الحديثة في بيئة تربوية متميزة" en="A Quranic educational school blending authentic tradition with modern sciences in an outstanding educational environment" />
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 32, flexWrap: 'wrap' }}>
-            <Link href="/public/contact" style={{ background: 'var(--accent)', color: 'var(--on-accent)', padding: '14px 28px', borderRadius: 8, fontFamily: 'var(--font-arabic-display)', fontSize: 15, fontWeight: 600, textDecoration: 'none', boxShadow: '0 6px 24px rgba(45,146,105,0.35)' }}>
+            <Link href="/public/register" style={{ background: 'var(--accent)', color: 'var(--on-accent)', padding: '14px 28px', borderRadius: 8, fontFamily: 'var(--font-arabic-display)', fontSize: 15, fontWeight: 600, textDecoration: 'none', boxShadow: '0 6px 24px rgba(45,146,105,0.35)' }}>
               <T ar="ابدأ التسجيل ←" en="Start Registration →" />
             </Link>
             <Link href="/public/about" style={{ background: 'rgba(255,255,255,0.12)', color: '#fff', padding: '14px 28px', borderRadius: 8, fontFamily: 'var(--font-arabic-display)', fontSize: 15, fontWeight: 600, textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)' }}>
@@ -170,7 +170,7 @@ export default function HomePage() {
           <T ar="باب التسجيل مفتوح للعام الدراسي ١٤٤٧ هـ. سارع بتسجيل أبنائك الآن." en="Registration is open for the academic year 1447H. Register your children now." />
         </p>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/public/contact" style={{ background: 'var(--accent)', color: 'var(--on-accent)', padding: '14px 32px', borderRadius: 8, fontFamily: 'var(--font-arabic-display)', fontSize: 15, fontWeight: 600, textDecoration: 'none', boxShadow: 'var(--shadow-accent)' }}>
+          <Link href="/public/register" style={{ background: 'var(--accent)', color: 'var(--on-accent)', padding: '14px 32px', borderRadius: 8, fontFamily: 'var(--font-arabic-display)', fontSize: 15, fontWeight: 600, textDecoration: 'none', boxShadow: 'var(--shadow-accent)' }}>
             <T ar="سجّل الآن" en="Register Now" />
           </Link>
         </div>

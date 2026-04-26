@@ -63,7 +63,7 @@ function Navbar() {
           <Link href={portalHref} className={styles.navLogin}>
             {portalLabel}
           </Link>
-          <Link href="/public/contact" className={styles.navCta}>
+          <Link href="/public/register" className={styles.navCta}>
             {t('سجّل الآن', 'Register Now')}
           </Link>
         </div>
@@ -81,7 +81,7 @@ function Navbar() {
           <Link href={portalHref} className={styles.mobileLink} onClick={() => setOpen(false)}>
             {portalLabel}
           </Link>
-          <Link href="/public/contact" className={styles.mobileCta} onClick={() => setOpen(false)}>
+          <Link href="/public/register" className={styles.mobileCta} onClick={() => setOpen(false)}>
             {t('سجّل الآن', 'Register Now')}
           </Link>
         </div>
@@ -141,5 +141,3 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
   );
 }
 
-// Export shared components for use in pages
-export { NAV_LINKS };

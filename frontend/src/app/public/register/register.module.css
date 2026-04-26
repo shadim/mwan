@@ -1,0 +1,56 @@
+.tabs {
+  display: flex; gap: 12px; margin-bottom: 24px;
+}
+
+.tab, .tabActive {
+  flex: 1; padding: 16px 12px; border-radius: 12px;
+  font-family: var(--font-arabic-display); font-size: 14px; font-weight: 600;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.tab {
+  background: var(--bg-card); border: 1.5px solid var(--border); color: var(--fg-3);
+}
+.tab:hover { border-color: var(--accent); color: var(--fg-1); }
+
+.tabActive {
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg-card));
+  border: 1.5px solid var(--accent); color: var(--accent);
+}
+
+.tabIcon { font-size: 20px; }
+
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: clamp(20px, 4vw, 32px);
+}
+
+.formGrid {
+  display: flex; flex-direction: column; gap: 16px;
+}
+
+.formTitle {
+  font-family: var(--font-arabic-display); font-size: 20px;
+  font-weight: 700; color: var(--fg-1); margin-bottom: 4px;
+}
+
+.fullWidth { width: 100%; }
+
+.row2 {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .row2 { grid-template-columns: 1fr; }
+  .tabs { flex-direction: column; }
+}
+
+.submitBtn {
+  width: 100%; padding: 14px; border-radius: 8px; border: none;
+  background: var(--accent); color: var(--on-accent);
+  font-family: var(--font-arabic-display); font-size: 15px; font-weight: 600;
+  cursor: pointer; box-shadow: var(--shadow-accent);
+  transition: opacity 0.15s;
+}
+.submitBtn:hover { opacity: 0.9; }
