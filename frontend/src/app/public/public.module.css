@@ -31,6 +31,16 @@
 }
 .navLink:hover { color: var(--accent); }
 
+.navActions { display: flex; align-items: center; gap: 12px; }
+
+.navLogin {
+  color: var(--accent); font-family: var(--font-arabic-display);
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  padding: 10px 16px; border-radius: 8px;
+  border: 1.5px solid var(--accent); transition: background 0.15s, color 0.15s;
+}
+.navLogin:hover { background: var(--accent); color: var(--on-accent); }
+
 .navCta {
   background: var(--accent); color: var(--on-accent);
   padding: 10px 20px; border-radius: 8px; font-family: var(--font-arabic-display);
@@ -44,7 +54,7 @@
 }
 
 @media (max-width: 768px) {
-  .navLinks, .navCta { display: none; }
+  .navLinks, .navActions { display: none; }
   .hamburger { display: block; }
 }
 

@@ -1,13 +1,14 @@
 'use client';
 
 import { useI18n } from '@/lib/i18n-context';
+import { useAuth } from '@/lib/auth-context';
 import { Star } from '@/components/ui';
 import Link from 'next/link';
 import { useState } from 'react';
 import styles from './public.module.css';
 
 const NAV_LINKS = [
-  { ar: 'الرئيسية', en: 'Home', href: '/public' },
+  { ar: 'الرئيسية', en: 'Home', href: '/' },
   { ar: 'عنّا', en: 'About', href: '/public/about' },
   { ar: 'البرامج', en: 'Programs', href: '/public/programs' },
   { ar: 'الأخبار', en: 'News', href: '/public/news' },
@@ -33,11 +34,18 @@ function UtilBar() {
 
 function Navbar() {
   const { t, lang } = useI18n();
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
+
+  const portalHref = user ? `/dashboard/${user.role}` : '/login';
+  const portalLabel = user
+    ? t('لوحتي', 'My Dashboard')
+    : t('دخول', 'Login');
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navInner}>
-        <Link href="/public" className={styles.navBrand}>
+        <Link href="/" className={styles.navBrand}>
           <Star size={28} color="var(--accent)" />
           <div>
             <div className={styles.brandTitle}>المهاجرين والأنصار</div>
@@ -51,9 +59,14 @@ function Navbar() {
             </Link>
           ))}
         </div>
-        <Link href="/public/contact" className={styles.navCta}>
-          {t('سجّل الآن', 'Register Now')}
-        </Link>
+        <div className={styles.navActions}>
+          <Link href={portalHref} className={styles.navLogin}>
+            {portalLabel}
+          </Link>
+          <Link href="/public/contact" className={styles.navCta}>
+            {t('سجّل الآن', 'Register Now')}
+          </Link>
+        </div>
         <button className={styles.hamburger} onClick={() => setOpen(!open)}>
           {open ? '✕' : '☰'}
         </button>
@@ -65,6 +78,9 @@ function Navbar() {
               {lang === 'ar' ? l.ar : l.en}
             </Link>
           ))}
+          <Link href={portalHref} className={styles.mobileLink} onClick={() => setOpen(false)}>
+            {portalLabel}
+          </Link>
           <Link href="/public/contact" className={styles.mobileCta} onClick={() => setOpen(false)}>
             {t('سجّل الآن', 'Register Now')}
           </Link>
