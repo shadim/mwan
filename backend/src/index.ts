@@ -10,6 +10,7 @@ import attendanceRoutes from './routes/attendance';
 import hifzRoutes from './routes/hifz';
 import financeRoutes, { donationRouter } from './routes/finance';
 import messageRoutes from './routes/messages';
+import registrationRoutes from './routes/registrations';
 import scheduleRoutes from './routes/schedule';
 
 dotenv.config();
@@ -39,6 +40,7 @@ app.use('/api/hifz', hifzRoutes);
 app.use('/api/payments', financeRoutes);
 app.use('/api/donations', donationRouter);
 app.use('/api/messages', messageRoutes);
+app.use('/api/registrations', registrationRoutes);
 app.use('/api/schedule', scheduleRoutes);
 
 // Error handler
