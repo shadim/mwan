@@ -96,9 +96,9 @@ router.post('/', async (req: Request, res: Response) => {
         createdAt: result.rows[0].created_at,
       });
     }
-  } catch (err) {
+  } catch (err: any) {
     console.error('Registration error:', err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: err.message || 'Internal server error', detail: err.detail });
   }
 });
 
