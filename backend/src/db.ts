@@ -3,10 +3,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const useSSL = process.env.DATABASE_URL?.includes('railway');
+// Internal Railway connections don't use SSL; public proxy connections do
+const dbUrl = process.env.DATABASE_URL || '';
+const useSSL = dbUrl.includes('railway') && !dbUrl.includes('.internal');
 
 export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: dbUrl,
   ssl: useSSL ? { rejectUnauthorized: false } : false,
   connectionTimeoutMillis: 10000,
   idleTimeoutMillis: 30000,
