@@ -78,6 +78,21 @@ app.post('/api/run-migration', async (_req, res) => {
     res.json({ status: 'Migration 003 applied successfully' });
   } catch (err: any) {
     console.error('Migration error:', err);
+    res.status(500).json({ error: err.message, detail: (err as any).detail });
+  }
+});
+
+// Diagnostic — remove after debugging
+app.get('/api/db-check', async (_req, res) => {
+  const secret = _req.headers['x-migration-secret'];
+  if (secret !== process.env.JWT_SECRET) return res.status(403).json({ error: 'Forbidden' });
+  try {
+    const { pool } = require('./db');
+    const types = await pool.query("SELECT typname FROM pg_type WHERE typname IN ('registration_type','registration_status')");
+    const tables = await pool.query("SELECT tablename FROM pg_tables WHERE tablename = 'registrations'");
+    const ext = await pool.query("SELECT extname FROM pg_extension WHERE extname = 'uuid-ossp'");
+    res.json({ types: types.rows, tables: tables.rows, extensions: ext.rows });
+  } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
 });
