@@ -2,7 +2,7 @@
 
 import { useI18n } from '@/lib/i18n-context';
 import { useAuth } from '@/lib/auth-context';
-import { Star } from '@/components/ui';
+import { Star, T } from '@/components/ui';
 import Link from 'next/link';
 import { useState } from 'react';
 import styles from './public.module.css';
@@ -48,8 +48,8 @@ function Navbar() {
         <Link href="/" className={styles.navBrand}>
           <Star size={28} color="var(--accent)" />
           <div>
-            <div className={styles.brandTitle}>المهاجرين والأنصار</div>
-            <div className={styles.brandSub}>MADRASA · EST 1426H</div>
+            <div className={styles.brandTitle}><T ar="المهاجرين والأنصار" en="Almohajirin wel Ansar" /></div>
+            <div className={styles.brandSub}><T ar="مدرسة · تأسست ١٤٢٦ هـ" en="MADRASA · EST 1426H" /></div>
           </div>
         </Link>
         <div className={styles.navLinks}>
@@ -98,7 +98,7 @@ function Footer() {
         <div>
           <div className={styles.footerBrand}>
             <Star size={24} color="var(--brass-300)" />
-            <span>المهاجرين والأنصار</span>
+            <span><T ar="المهاجرين والأنصار" en="Almohajirin wel Ansar" /></span>
           </div>
           <p className={styles.footerDesc}>
             {t('مدرسة قرآنية تعليمية تجمع بين الأصالة والعلوم الحديثة، تأسست عام ١٤٢٦ هـ',

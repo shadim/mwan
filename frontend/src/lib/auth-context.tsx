@@ -44,7 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       credentials: 'include',
     })
       .then(res => res.ok ? res.json() : Promise.reject())
-      .then((data: any) => {
+      .then((data: any) => { // justified: refresh response shape not typed yet
         setTokens(data.accessToken);
         return api('/auth/me');
       })
@@ -58,7 +58,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
-    }) as any;
+    }) as any; // justified: login response shape not typed yet
     setTokens(data.accessToken);
     setUser(data.user);
     return { user: data.user };
@@ -69,7 +69,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ credential }),
-    }) as any;
+    }) as any; // justified: google auth response shape not typed yet
     setTokens(data.accessToken);
     setUser(data.user);
     return { user: data.user };
@@ -80,7 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (getAccessToken()) {
         await api('/auth/logout', { method: 'POST' });
       }
-    } catch {} // ignore errors
+    } catch (err) { console.error('Logout failed:', err); }
     clearTokens();
     setUser(null);
   };

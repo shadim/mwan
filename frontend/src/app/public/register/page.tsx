@@ -1,15 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useI18n } from '@/lib/i18n-context';
+import { T } from '@/components/ui';
+import { apiPost } from '@/lib/api';
 import styles from './register.module.css';
 
 type FormType = 'student' | 'adult';
-
-function T({ ar, en }: { ar: string; en: string }) {
-  const { t } = useI18n();
-  return <>{t(ar, en)}</>;
-}
 
 interface StudentForm {
   name: string;
@@ -56,6 +53,7 @@ function isValidDate(v: string): boolean {
 }
 
 function isMinWords(v: string, min: number): boolean {
+  if (!v.trim()) return false;
   return v.trim().split(/\s+/).length >= min;
 }
 
@@ -68,6 +66,8 @@ export default function RegisterPage() {
   const [adult, setAdult] = useState<AdultForm>(INITIAL_ADULT);
   const [submitted, setSubmitted] = useState(false);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const setS = (k: keyof StudentForm, v: string) => setStudent(p => ({ ...p, [k]: v }));
   const setA = (k: keyof AdultForm, v: string) => setAdult(p => ({ ...p, [k]: v }));
@@ -94,22 +94,39 @@ export default function RegisterPage() {
     return e;
   }
 
-  const errors = formType === 'student' ? validateStudent() : validateAdult();
+  const errors = useMemo(() => formType === 'student' ? validateStudent() : validateAdult(), [formType, student, adult, t]);
   const isValid = Object.keys(errors).length === 0;
+  const hasTouched = Object.keys(touched).length > 0;
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitError(null);
     const allFields = formType === 'student'
       ? Object.keys(student) as string[]
       : Object.keys(adult) as string[];
     const allTouched: Record<string, boolean> = {};
     allFields.forEach(k => { allTouched[k] = true; });
     setTouched(allTouched);
-    if (isValid) setSubmitted(true);
+    if (!isValid) return;
+
+    setSubmitting(true);
+    try {
+      const body = formType === 'student'
+        ? { type: 'student' as const, ...student }
+        : { type: 'adult' as const, ...adult };
+      await apiPost('/registrations', body);
+      setSubmitted(true);
+    } catch (err: any) { // justified: error shape from apiPost is untyped
+      setSubmitError(err.message || t('حدث خطأ أثناء الإرسال', 'An error occurred while submitting'));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleReset = () => {
     setSubmitted(false);
     setTouched({});
+    setSubmitError(null);
     setStudent(INITIAL_STUDENT);
     setAdult(INITIAL_ADULT);
   };
@@ -145,14 +162,14 @@ export default function RegisterPage() {
           <div className={styles.tabs}>
             <button
               className={formType === 'student' ? styles.tabActive : styles.tab}
-              onClick={() => { setFormType('student'); setSubmitted(false); setTouched({}); }}
+              onClick={() => { setFormType('student'); setSubmitted(false); setTouched({}); setSubmitError(null); }}
             >
               <span className={styles.tabIcon}>🎒</span>
               <T ar="طلاب (بنين / بنات)" en="Students (Boys / Girls)" />
             </button>
             <button
               className={formType === 'adult' ? styles.tabActive : styles.tab}
-              onClick={() => { setFormType('adult'); setSubmitted(false); setTouched({}); }}
+              onClick={() => { setFormType('adult'); setSubmitted(false); setTouched({}); setSubmitError(null); }}
             >
               <span className={styles.tabIcon}>📖</span>
               <T ar="كبار (رجال / نساء)" en="Adults (Men / Women)" />
@@ -165,10 +182,10 @@ export default function RegisterPage() {
               <div style={{ textAlign: 'center', padding: '40px 20px' }}>
                 <div style={{ fontSize: 48, marginBottom: 16 }}>✓</div>
                 <div style={{ fontFamily: 'var(--font-arabic-display)', fontSize: 22, fontWeight: 700, color: 'var(--accent)' }}>
-                  <T ar="تم إرسال الطلب بنجاح" en="Application Submitted Successfully" />
+                  <T ar="تم إرسال طلب التسجيل بنجاح" en="Registration Submitted Successfully" />
                 </div>
                 <p style={{ fontSize: 14, color: 'var(--fg-3)', marginTop: 8 }}>
-                  <T ar="سنتواصل معك قريباً إن شاء الله" en="We'll contact you soon, insha'Allah" />
+                  <T ar="سنتواصل معك قريباً إن شاء الله" en="We will contact you soon, insha'Allah" />
                 </p>
                 <button onClick={handleReset} className={styles.submitBtn} style={{ marginTop: 20, width: 'auto', padding: '10px 24px' }}>
                   <T ar="تسجيل جد��د" en="New Registration" />
@@ -176,7 +193,7 @@ export default function RegisterPage() {
               </div>
             ) : formType === 'student' ? (
               /* ───── Student Form ───── */
-              <div className={styles.formGrid}>
+              <form onSubmit={handleSubmit} className={styles.formGrid}>
                 <div className={styles.formTitle}>
                   <T ar="تسجيل طالب / طالبة" en="Student Registration" />
                 </div>
@@ -264,15 +281,18 @@ export default function RegisterPage() {
                     placeholder={t('اذكر التفاصيل إن وجدت...', 'Provide details if any...')} />
                 </div>
 
+                {submitError && <div className={styles.fieldError} style={{ textAlign: 'center', marginBottom: 8 }}>{submitError}</div>}
                 <div className={styles.fullWidth}>
-                  <button onClick={handleSubmit} className={styles.submitBtn} disabled={touched.name && !isValid}>
-                    <T ar="إرسال طلب التسجيل" en="Submit Registration" />
+                  <button type="submit" className={styles.submitBtn} disabled={submitting || (hasTouched && !isValid)}>
+                    {submitting
+                      ? <T ar="جاري الإرسال..." en="Submitting..." />
+                      : <T ar="إرسال طلب التسجيل" en="Submit Registration" />}
                   </button>
                 </div>
-              </div>
+              </form>
             ) : (
               /* ───── Adult Form ───── */
-              <div className={styles.formGrid}>
+              <form onSubmit={handleSubmit} className={styles.formGrid}>
                 <div className={styles.formTitle}>
                   <T ar="تسجيل كبار" en="Adult Registration" />
                 </div>
@@ -351,12 +371,15 @@ export default function RegisterPage() {
                   </div>
                 </div>
 
+                {submitError && <div className={styles.fieldError} style={{ textAlign: 'center', marginBottom: 8 }}>{submitError}</div>}
                 <div className={styles.fullWidth}>
-                  <button onClick={handleSubmit} className={styles.submitBtn} disabled={touched.name && !isValid}>
-                    <T ar="إرسال طلب التسجيل" en="Submit Registration" />
+                  <button type="submit" className={styles.submitBtn} disabled={submitting || (hasTouched && !isValid)}>
+                    {submitting
+                      ? <T ar="جاري الإرسال..." en="Submitting..." />
+                      : <T ar="إرسال طلب التسجيل" en="Submit Registration" />}
                   </button>
                 </div>
-              </div>
+              </form>
             )}
           </div>
         </div>

@@ -16,7 +16,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const dashboardFor = (role: string) => `/dashboard/${role}`;
+  const dashboardFor = (role: 'manager' | 'teacher' | 'student' | 'parent') => `/dashboard/${role}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

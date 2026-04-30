@@ -1,13 +1,8 @@
 'use client';
 
 import { useI18n } from '@/lib/i18n-context';
-import { Star } from '@/components/ui';
+import { Star, T } from '@/components/ui';
 import Link from 'next/link';
-
-function T({ ar, en }: { ar: string; en: string }) {
-  const { t } = useI18n();
-  return <>{t(ar, en)}</>;
-}
 
 function Section({ children, bg, style, id }: { children: React.ReactNode; bg?: string; style?: React.CSSProperties; id?: string }) {
   return (
