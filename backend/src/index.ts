@@ -32,6 +32,56 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// One-time migration runner — remove after 003 is applied
+app.post('/api/run-migration', async (_req, res) => {
+  const secret = _req.headers['x-migration-secret'];
+  if (secret !== process.env.JWT_SECRET) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+  try {
+    const { pool } = require('./db');
+    await pool.query(`
+      DO $$ BEGIN
+        IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'registration_type') THEN
+          CREATE TYPE registration_type AS ENUM ('student', 'adult');
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'registration_status') THEN
+          CREATE TYPE registration_status AS ENUM ('pending', 'reviewed', 'accepted', 'rejected');
+        END IF;
+      END $$;
+
+      CREATE TABLE IF NOT EXISTS registrations (
+        id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+        type registration_type NOT NULL,
+        status registration_status NOT NULL DEFAULT 'pending',
+        name VARCHAR(255) NOT NULL,
+        birth_date DATE NOT NULL,
+        gender VARCHAR(10) NOT NULL,
+        class_level VARCHAR(10),
+        father_phone VARCHAR(30),
+        mother_phone VARCHAR(30),
+        payment_challenge TEXT,
+        health_notes TEXT,
+        phone VARCHAR(30),
+        hifz_level VARCHAR(30),
+        tajwid VARCHAR(20),
+        tafsir VARCHAR(20),
+        reviewed_by UUID REFERENCES users(id),
+        reviewed_at TIMESTAMPTZ,
+        created_at TIMESTAMPTZ DEFAULT NOW()
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_registrations_status ON registrations(status);
+      CREATE INDEX IF NOT EXISTS idx_registrations_type ON registrations(type);
+      CREATE INDEX IF NOT EXISTS idx_registrations_created ON registrations(created_at DESC);
+    `);
+    res.json({ status: 'Migration 003 applied successfully' });
+  } catch (err: any) {
+    console.error('Migration error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/students', studentRoutes);
