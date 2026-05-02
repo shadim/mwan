@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 
 import authRoutes from './routes/auth';
+import contactRoutes from './routes/contact';
 import studentRoutes from './routes/students';
 import attendanceRoutes from './routes/attendance';
 import hifzRoutes from './routes/hifz';
@@ -38,6 +39,7 @@ app.use('/api/students', studentRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/hifz', hifzRoutes);
 app.use('/api/payments', financeRoutes);
+app.use('/api/contact', contactRoutes);
 app.use('/api/donations', donationRouter);
 app.use('/api/messages', messageRoutes);
 app.use('/api/registrations', registrationRoutes);
