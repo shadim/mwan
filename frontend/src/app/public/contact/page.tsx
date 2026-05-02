@@ -36,9 +36,9 @@ export default function ContactPage() {
             <h2 className="pub-title"><T ar="تفضّل بزيارتنا" en="Come Visit Us" /></h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
-                { icon: '📍', ar: 'النقب، فلسطين', en: 'Negev, Palestine', subAr: 'شارع المدرسة الرئيسي', subEn: 'Main School Street' },
-                { icon: '☎', ar: '٠٤ ٦٢٣ ٨٨٩١', en: '04-623-8891', subAr: 'الأحد — الخميس · ٧:٣٠ — ٢:٠٠', subEn: 'Sun — Thu · 7:30 — 2:00' },
-                { icon: '✉', ar: 'info@almohajirin.edu', en: 'info@almohajirin.edu', subAr: 'نرد خلال ٢٤ ساعة', subEn: 'We reply within 24 hours' },
+                { icon: '📍', ar: 'كفرقرع، المثلث', en: 'Negev, Palestine', subAr: 'شارع الفرابي ٦، مقابل ثانويه كفرقرع ', subEn: 'Main School Street' },
+                { icon: '☎', ar: '052-5534466, 053-8084944', en: '04-623-8891', subAr: 'الأحد — الخميس · ٧:٣٠ — ٢:٠٠', subEn: 'Sun — Thu · 7:30 — 2:00' },
+                { icon: '✉', ar: 'almohagren96@gmail.com', en: 'almohagren96@gmail.com', subAr: 'نرد خلال ٢٤ ساعة', subEn: 'We reply within 24 hours' },
               ].map((c, i) => (
                 <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 12, padding: 18 }}>
                   <div style={{ width: 40, height: 40, borderRadius: 10, flexShrink: 0, background: 'color-mix(in srgb, var(--accent) 12%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>{c.icon}</div>
@@ -49,8 +49,12 @@ export default function ContactPage() {
                 </div>
               ))}
             </div>
-            <div style={{ marginTop: 20, borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border)', height: 180, background: 'var(--bg-card)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--fg-3)', fontSize: 13, fontFamily: 'monospace' }}>
-              [ map placeholder ]
+            <div style={{ marginTop: 20, borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border)', height: 180 }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d35.064572!3d32.512556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDMwJzQ1LjIiTiAzNcKwMDMnNTIuNSJF!5e0!3m2!1sar!2s!4v1"
+                width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
 

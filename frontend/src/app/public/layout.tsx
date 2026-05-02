@@ -3,15 +3,16 @@
 import { useI18n } from '@/lib/i18n-context';
 import { useAuth } from '@/lib/auth-context';
 import { Star, T } from '@/components/ui';
+import { getHijriYear, getGregorianYear } from '@/lib/hijri';
 import Link from 'next/link';
 import { useState } from 'react';
 import styles from './public.module.css';
 
 const NAV_LINKS = [
   { ar: 'الرئيسية', en: 'Home', href: '/' },
-  { ar: 'عنّا', en: 'About', href: '/public/about' },
-  { ar: 'البرامج', en: 'Programs', href: '/public/programs' },
-  { ar: 'الأخبار', en: 'News', href: '/public/news' },
+  // { ar: 'عنّا', en: 'About', href: '/public/about' },
+  // { ar: 'البرامج', en: 'Programs', href: '/public/programs' },
+  // { ar: 'الأخبار', en: 'News', href: '/public/news' },
   { ar: 'تواصل', en: 'Contact', href: '/public/contact' },
 ];
 
@@ -19,7 +20,7 @@ function UtilBar() {
   const { t, lang, setLang } = useI18n();
   return (
     <div className={styles.utilBar}>
-      <span>{t('☎ ٠٤ ٦٢٣ ٨٨٩١', '☎ 04-623-8891')}</span>
+      <span>{t('☎ 052-5534466, 053-8084944', '☎ 04-623-8891')}</span>
       <div className={styles.langBtns}>
         {(['ar', 'en'] as const).map(l => (
           <button key={l} onClick={() => setLang(l)}
@@ -49,7 +50,7 @@ function Navbar() {
           <Star size={28} color="var(--accent)" />
           <div>
             <div className={styles.brandTitle}><T ar="المهاجرين والأنصار" en="Almohajirin wel Ansar" /></div>
-            <div className={styles.brandSub}><T ar="مدرسة · تأسست ١٤٢٦ هـ" en="MADRASA · EST 1426H" /></div>
+            <div className={styles.brandSub}><T ar="مدرسة · تأسست ١٤٤٥ هـ" en="MADRASA · EST 1445H" /></div>
           </div>
         </Link>
         <div className={styles.navLinks}>
@@ -92,6 +93,8 @@ function Navbar() {
 
 function Footer() {
   const { t, lang } = useI18n();
+  const hijri = getHijriYear();
+  const gYear = getGregorianYear();
   return (
     <footer className={styles.footer}>
       <div className={styles.footerGrid}>
@@ -101,7 +104,7 @@ function Footer() {
             <span><T ar="المهاجرين والأنصار" en="Almohajirin wel Ansar" /></span>
           </div>
           <p className={styles.footerDesc}>
-            {t('مدرسة قرآنية تعليمية تجمع بين الأصالة والعلوم الحديثة، تأسست عام ١٤٢٦ هـ',
+            {t('مدرسة قرآنية تعليمية تجمع بين الأصالة والعلوم الحديثة، تأسست عام ١٤٤٥ هـ',
                'A Quranic educational school blending tradition and modern sciences, est. 1426H')}
           </p>
         </div>
@@ -116,15 +119,15 @@ function Footer() {
         <div>
           <div className={styles.footerHeading}>{t('تواصل معنا', 'Contact Us')}</div>
           <div className={styles.footerContact}>
-            {t('☎ ٠٤ ٦٢٣ ٨٨٩١', '☎ 04-623-8891')}<br />
-            ✉ info@almohajirin.edu<br />
-            {t('📍 النقب، فلسطين', '📍 Negev, Palestine')}
+            {t('☎ 052-5534466, 053-8084944', '☎ 04-623-8891')}<br />
+            ✉ almohagren96@gmail.com<br />
+            {t('📍 كفرقرع، المثلث', '📍 Negev, Palestine')}
           </div>
         </div>
       </div>
       <div className={styles.footerBottom}>
-        {t('© ١٤٤٧ هـ / ٢٠٢٦ م · مدرسة المهاجرين والأنصار · جميع الحقوق محفوظة',
-           '© 1447H / 2026 · Almohajirin wel Ansar Madrasa · All rights reserved')}
+        {t(`© ${hijri.arH} / ${gYear} م · مدرسة المهاجرين والأنصار · جميع الحقوق محفوظة`,
+           `© ${hijri.enH} / ${gYear} · Almohajirin wel Ansar Madrasa · All rights reserved`)}
       </div>
     </footer>
   );

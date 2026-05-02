@@ -25,10 +25,10 @@ function HeroSection() {
           fontFamily: 'Reem Kufi, sans-serif', fontSize: 'clamp(32px, 6vw, 56px)',
           fontWeight: 700, color: '#fff', margin: '20px 0 12px', lineHeight: 1.15,
         }}>
-          <T ar="نور العلم" en="Light of Knowledge"/>
+          <T ar="مدرسه الانصار لافضل العلوم" en="Light of Knowledge"/>
           <br/>
           <span style={{ fontFamily: 'Amiri, serif', fontWeight: 400, fontStyle: 'italic', color: 'var(--brass-300)' }}>
-            <T ar="وبركة التربية" en="And the Blessing of Education"/>
+            <T ar="كهف هذا الزمان" en="And the Blessing of Education"/>
           </span>
         </h1>
         <p style={{ fontSize: 'clamp(14px, 2vw, 18px)', color: 'rgba(255,255,255,0.8)', maxWidth: 540, margin: '0 auto', lineHeight: 1.8 }}>
@@ -44,14 +44,14 @@ function HeroSection() {
           }}>
             <T ar="ابدأ التسجيل ←" en="Start Registration →"/>
           </a>
-          <a href="about.html" style={{
+          {/* <a href="about.html" style={{
             background: 'rgba(255,255,255,0.12)', color: '#fff',
             padding: '14px 28px', borderRadius: 8, fontFamily: 'Reem Kufi',
             fontSize: 15, fontWeight: 600, textDecoration: 'none',
             border: '1px solid rgba(255,255,255,0.2)',
           }}>
             <T ar="جولة افتراضية" en="Virtual Tour"/>
-          </a>
+          </a> */}
         </div>
       </div>
     </div>
@@ -62,8 +62,8 @@ function ProgramsStrip() {
   const programs = [
     { icon: '📖', ar: 'تحفيظ القرآن', en: 'Quran Memorization', subAr: 'حلقات يومية مع معلمين مختصين', subEn: 'Daily circles with specialized teachers' },
     { icon: '🕌', ar: 'العلوم الشرعية', en: 'Islamic Studies', subAr: 'عقيدة · فقه · حديث · سيرة', subEn: 'Aqeedah · Fiqh · Hadith · Seerah' },
-    { icon: '🔬', ar: 'العلوم الحديثة', en: 'Modern Sciences', subAr: 'رياضيات · علوم · تقنية', subEn: 'Math · Science · Technology' },
-    { icon: '🌍', ar: 'اللغات', en: 'Languages', subAr: 'عربية · عبرية · إنجليزية', subEn: 'Arabic · Hebrew · English' },
+    // { icon: '🔬', ar: 'العلوم الحديثة', en: 'Modern Sciences', subAr: 'رياضيات · علوم · تقنية', subEn: 'Math · Science · Technology' },
+    { icon: '🌍', ar: 'التربيه الايمانيه', en: 'Faith Education', subAr: 'تعلمنا الايمان ثم تعلمنا القران', subEn: 'Arabic · Hebrew · English' },
   ];
   return (
     <Section bg="var(--bg-elev)" style={{ padding: '48px 24px' }}>
@@ -100,16 +100,16 @@ function AboutSnippet() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 40, alignItems: 'center' }}>
         <div>
           <SectionEyebrow><T ar="من نحن" en="About Us"/></SectionEyebrow>
-          <SectionTitle><T ar="بيت العلم والتربية" en="A Home of Knowledge & Values"/></SectionTitle>
+          <SectionTitle><T ar="مدرسه الانصار لافضل العلوم" en="A Home of Knowledge & Values"/></SectionTitle>
           <p style={{ fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.85, margin: '0 0 20px' }}>
-            <T ar="تأسست مدرسة المهاجرين والأنصار عام ١٤٢٦ هـ بهدف تقديم تعليم متميز يجمع بين حفظ القرآن الكريم والعلوم الشرعية والمناهج الحديثة، في بيئة تربوية آمنة ومحفزة."
+            <T ar="تأسست مدرسة المهاجرين والأنصار عام ١٤٤٥ هـ بهدف تقديم تعليم متميز يجمع بين حفظ القرآن الكريم والعلوم الشرعية والتربيه الايمانيه، في بيئة تربوية آمنة ومحفزة."
                en="Almohajirin wel Ansar Madrasa was established in 1426H with the goal of providing distinguished education combining Quran memorization, Islamic studies, and modern curricula in a safe and stimulating educational environment."/>
           </p>
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
             {[
-              { n: '+٤٨٠', nEn: '480+', l: 'طالب وطالبة', lEn: 'Students' },
-              { n: '+٣٢', nEn: '32+', l: 'معلم ومعلمة', lEn: 'Teachers' },
-              { n: '+١٨', nEn: '18+', l: 'عاماً من العطاء', lEn: 'Years of giving' },
+              { n: '+٤٥', nEn: '480+', l: 'طالب وطالبة', lEn: 'Students' },
+              { n: '+٥', nEn: '32+', l: 'معلم ومعلمة', lEn: 'Teachers' },
+              { n: '+٢', nEn: '18+', l: 'عاماً من العطاء', lEn: 'Years of giving' },
             ].map((s, i) => (
               <div key={i}>
                 <div style={{ fontFamily: 'Reem Kufi', fontSize: 28, fontWeight: 700, color: 'var(--accent)', lineHeight: 1 }}>
@@ -227,8 +227,8 @@ function VerseSection() {
         <div style={{ flex: '0 1 80px', height: 1, background: 'var(--divider)' }}/>
       </div>
       <div style={{ fontFamily: 'Amiri, serif', fontSize: 'clamp(20px, 4vw, 30px)', color: 'var(--fg-1)', lineHeight: 2 }}>
-        ﴾ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴿
-      </div>
+        ﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾
+              </div>
       <div style={{ fontSize: 12, color: 'var(--accent-warm)', marginTop: 8, letterSpacing: '0.15em', fontFamily: 'Reem Kufi' }}>
         طه · ١١٤
       </div>

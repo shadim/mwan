@@ -25,7 +25,7 @@ function KitManager() {
             {/* KPI row */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, marginTop: 14 }}>
               {[
-                { n: '٤٨٠', l: 'الطلاب', d: '+١٢', pos: true },
+                { n: '٤٥', l: 'الطلاب', d: '+١٢', pos: true },
                 { n: '٩٦٪', l: 'الحضور', d: '+٢', pos: true },
                 { n: '٣٢', l: 'المعلمين', d: '—', pos: null },
                 { n: '٦٨٪', l: 'حملة البناء', d: '+٥', pos: true },
