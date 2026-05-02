@@ -21,7 +21,7 @@ export default function ManagerDashboard() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 10, marginBottom: 16 }}>
-        <Stat label={t('الطلاب', 'Students')} value="٤٨٠" delta="+١٢" positive />
+        <Stat label={t('الطلاب', 'Students')} value="٤٥" delta="+١٢" positive />
         <Stat label={t('الحضور', 'Attendance')} value="٩٦٪" delta="+٢" positive />
         <Stat label={t('المعلمين', 'Teachers')} value="٣٢" />
         <Stat label={t('حملة البناء', 'Campaign')} value="٦٨٪" delta="+٥" positive />

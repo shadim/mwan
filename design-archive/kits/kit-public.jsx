@@ -9,7 +9,7 @@ function KitPublic() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 20px', fontSize: 10, fontFamily: 'Reem Kufi',
       }}>
-        <span style={{ letterSpacing: '0.08em' }}>☎ ٠٤ ٦٢٣ ٨٨٩١</span>
+        <span style={{ letterSpacing: '0.08em' }}>☎ 052-5534466, 053-8084944</span>
         <span style={{ display: 'flex', gap: 14 }}>
           <span>EN</span>
           <span style={{ color: 'var(--brass-300)' }}>AR ●</span>
@@ -35,9 +35,9 @@ function KitPublic() {
         </div>
         <div style={{ display: 'flex', gap: 16, fontSize: 11, color: 'var(--fg-2)', fontFamily: 'Reem Kufi' }}>
           <span style={{ color: 'var(--accent)', fontWeight: 600 }}>الرئيسية</span>
-          <span>عنّا</span>
-          <span>البرامج</span>
-          <span>الأخبار</span>
+          {/* <span>عنّا</span> */}
+          {/* <span>البرامج</span> */}
+          {/* <span>الأخبار</span> */}
           <span>تواصل</span>
         </div>
       </div>
@@ -67,9 +67,9 @@ function KitPublic() {
             fontFamily: 'Reem Kufi', fontSize: 30, fontWeight: 700, color: 'var(--fg-1)',
             margin: '16px 0 8px', lineHeight: 1.15,
           }}>
-            نور العلم<br/>
+            مدرسه الانصار لافضل العلوم<br/>
             <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontFamily: 'Amiri, serif', fontWeight: 400 }}>
-              وبركة التربية
+              كهف هذا الزمان
             </span>
           </h1>
           <p style={{ fontSize: 12, color: 'var(--fg-2)', margin: '8px 20px 0', lineHeight: 1.75 }}>
@@ -89,7 +89,7 @@ function KitPublic() {
           {[
             { icon: '📖', title: 'تحفيظ القرآن', desc: 'حلقات يومية' },
             { icon: '🕌', title: 'العلوم الشرعية', desc: 'عقيدة وفقه' },
-            { icon: '🔬', title: 'العلوم الحديثة', desc: 'منهج متكامل' },
+            // { icon: '🔬', title: 'العلوم الحديثة', desc: 'منهج متكامل' },
           ].map((p, i) => (
             <div key={i} style={{
               background: 'var(--bg-card)', border: '1px solid var(--border)',
@@ -131,7 +131,7 @@ function KitPublic() {
           <div style={{ flex: 1, height: 1, background: 'var(--divider)' }}/>
         </div>
         <div style={{ fontFamily: 'Amiri, serif', fontSize: 14, color: 'var(--fg-1)', lineHeight: 1.9 }}>
-          ﴾ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴿
+          ﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾
         </div>
         <div style={{ fontSize: 9, color: 'var(--accent-warm)', marginTop: 4, letterSpacing: '0.15em', fontFamily: 'Reem Kufi' }}>
           طه · ١١٤

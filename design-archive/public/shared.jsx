@@ -3,9 +3,9 @@
 
 const NAV_LINKS = [
   { ar: 'الرئيسية', en: 'Home', href: 'index.html' },
-  { ar: 'عنّا', en: 'About', href: 'about.html' },
-  { ar: 'البرامج', en: 'Programs', href: 'programs.html' },
-  { ar: 'الأخبار', en: 'News', href: 'news.html' },
+  // { ar: 'عنّا', en: 'About', href: 'about.html' },
+  // { ar: 'البرامج', en: 'Programs', href: 'programs.html' },
+  // { ar: 'الأخبار', en: 'News', href: 'news.html' },
   { ar: 'تواصل', en: 'Contact', href: 'contact.html' },
 ];
 
@@ -50,7 +50,7 @@ function UtilBar() {
       fontFamily: 'Reem Kufi, sans-serif',
     }}>
       <span style={{ letterSpacing: '0.06em', opacity: 0.9 }}>
-        <T ar="☎ ٠٤ ٦٢٣ ٨٨٩١" en="☎ 04-623-8891"/>
+        <T ar="☎ 052-5534466, 053-8084944" en="☎ 04-623-8891"/>
       </span>
       <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
         {['AR','EN'].map(l => (
@@ -208,7 +208,7 @@ function Footer() {
             </span>
           </div>
           <p style={{ fontSize: 13, lineHeight: 1.8, opacity: 0.7, margin: 0 }}>
-            <T ar="مدرسة قرآنية تعليمية تجمع بين الأصالة والعلوم الحديثة، تأسست عام ١٤٢٦ هـ"
+            <T ar="مدرسة قرآنية تعليمية تجمع بين الأصالة والعلوم الحديثة، تأسست عام ١٤٤٥ هـ"
                en="A Quranic educational school blending tradition and modern sciences, est. 1426H"/>
           </p>
         </div>
@@ -228,9 +228,9 @@ function Footer() {
             <T ar="تواصل معنا" en="Contact Us"/>
           </div>
           <div style={{ fontSize: 13, lineHeight: 2, opacity: 0.7 }}>
-            <T ar="☎ ٠٤ ٦٢٣ ٨٨٩١" en="☎ 04-623-8891"/><br/>
-            <T ar="✉ info@almohajirin.edu" en="✉ info@almohajirin.edu"/><br/>
-            <T ar="📍 النقب، فلسطين" en="📍 Negev, Palestine"/>
+            <T ar="☎ 052-5534466, 053-8084944" en="☎ 04-623-8891"/><br/>
+            <T ar="✉ almohagren96@gmail.com" en="✉ almohagren96@gmail.com"/><br/>
+            <T ar="📍 كفرقرع، المثلث" en="📍 Negev, Palestine"/>
           </div>
         </div>
       </div>

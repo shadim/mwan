@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { useI18n } from '@/lib/i18n-context';
 import { T } from '@/components/ui';
+import { getHijriYear } from '@/lib/hijri';
 import { apiPost } from '@/lib/api';
 import styles from './register.module.css';
 
@@ -61,6 +62,7 @@ type Errors = Record<string, string>;
 
 export default function RegisterPage() {
   const { t } = useI18n();
+  const hijri = getHijriYear();
   const [formType, setFormType] = useState<FormType>('student');
   const [student, setStudent] = useState<StudentForm>(INITIAL_STUDENT);
   const [adult, setAdult] = useState<AdultForm>(INITIAL_ADULT);
@@ -146,7 +148,7 @@ export default function RegisterPage() {
     <>
       <div style={{ background: 'var(--green-800)', color: '#fff', padding: 'clamp(48px,8vw,80px) 24px', textAlign: 'center' }}>
         <div className="pub-eyebrow" style={{ justifyContent: 'center', color: 'var(--accent-warm)' }}>
-          <T ar="العام الدراسي ١٤٤٧ هـ" en="Academic Year 1447H" />
+          <T ar={`العام الدراسي ${hijri.arH}`} en={`Academic Year ${hijri.enH}`} />
         </div>
         <h1 style={{ fontFamily: 'var(--font-arabic-display)', fontSize: 'clamp(28px,5vw,48px)', fontWeight: 700, margin: '16px 0 0' }}>
           <T ar="التسجيل" en="Registration" />

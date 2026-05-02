@@ -16,7 +16,7 @@ function ManagerDashTab() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 10, marginBottom: 16 }}>
-        <AppStat label="الطلاب" labelEn="Students" value="٤٨٠" valueEn="480" delta="+١٢" positive/>
+        <AppStat label="الطلاب" labelEn="Students" value="٤٥" valueEn="480" delta="+١٢" positive/>
         <AppStat label="الحضور" labelEn="Attendance" value="٩٦٪" valueEn="96%" delta="+٢" positive/>
         <AppStat label="المعلمين" labelEn="Teachers" value="٣٢" valueEn="32"/>
         <AppStat label="حملة البناء" labelEn="Campaign" value="٦٨٪" valueEn="68%" delta="+٥" positive/>
