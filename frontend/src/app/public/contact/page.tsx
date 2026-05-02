@@ -2,17 +2,33 @@
 
 import { useState } from 'react';
 import { useI18n } from '@/lib/i18n-context';
-
-function T({ ar, en }: { ar: string; en: string }) {
-  const { t } = useI18n();
-  return <>{t(ar, en)}</>;
-}
+import { T } from '@/components/ui';
+import { apiPost } from '@/lib/api';
 
 export default function ContactPage() {
   const { t } = useI18n();
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: 'general', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const set = (k: string, v: string) => setForm(p => ({ ...p, [k]: v }));
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.email || !form.message) {
+      setError(t('يرجى تعبئة جميع الحقول المطلوبة', 'Please fill in all required fields'));
+      return;
+    }
+    setError('');
+    setLoading(true);
+    try {
+      await apiPost('/contact', form);
+      setSubmitted(true);
+    } catch (err: any) { // justified: error shape from apiPost is untyped
+      setError(err.message || t('حدث خطأ أثناء الإرسال', 'An error occurred while sending'));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const inputStyle: React.CSSProperties = {
     width: '100%', padding: '12px 14px', borderRadius: 8,
@@ -98,8 +114,13 @@ export default function ContactPage() {
                     <label style={{ display: 'block', fontFamily: 'var(--font-arabic-display)', fontSize: 13, fontWeight: 600, color: 'var(--fg-1)', marginBottom: 6 }}><T ar="الرسالة" en="Message" /></label>
                     <textarea rows={4} style={{ ...inputStyle, resize: 'vertical' }} value={form.message} onChange={e => set('message', e.target.value)} placeholder={t('اكتب رسالتك هنا...', 'Write your message here...')} />
                   </div>
-                  <button onClick={() => setSubmitted(true)} style={{ width: '100%', padding: '14px', borderRadius: 8, border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontFamily: 'var(--font-arabic-display)', fontSize: 15, fontWeight: 600, cursor: 'pointer', boxShadow: 'var(--shadow-accent)' }}>
-                    <T ar="إرسال الرسالة" en="Send Message" />
+                  {error && (
+                    <div style={{ color: 'var(--error, #c0392b)', fontSize: 13, padding: '8px 12px', background: 'color-mix(in srgb, var(--error, #c0392b) 10%, transparent)', borderRadius: 6 }}>
+                      {error}
+                    </div>
+                  )}
+                  <button onClick={handleSubmit} disabled={loading} style={{ width: '100%', padding: '14px', borderRadius: 8, border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontFamily: 'var(--font-arabic-display)', fontSize: 15, fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1, boxShadow: 'var(--shadow-accent)' }}>
+                    {loading ? <T ar="جارٍ الإرسال..." en="Sending..." /> : <T ar="إرسال الرسالة" en="Send Message" />}
                   </button>
                 </div>
               </>
