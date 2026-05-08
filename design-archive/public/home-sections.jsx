@@ -193,7 +193,7 @@ function CampaignSection() {
 function StatsStrip() {
   const stats = [
     { n: '٩٦٪', nEn: '96%', l: 'نسبة الحضور', lEn: 'Attendance Rate' },
-    { n: '١٢', nEn: '12', l: 'حافظاً هذا العام', lEn: 'Huffaz This Year' },
+    { n: '١٢', nEn: '12', l: 'يحفظ في هذا العام', lEn: 'Huffaz This Year' },
     { n: '٩٨٪', nEn: '98%', l: 'رضا أولياء الأمور', lEn: 'Parent Satisfaction' },
     { n: '٣', nEn: '3', l: 'لغات تدريس', lEn: 'Teaching Languages' },
   ];
