@@ -133,9 +133,9 @@ export default function HomePage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 16, textAlign: 'center' }}>
           {[
             { n: '٩٦٪', nEn: '96%', l: 'نسبة الحضور', lEn: 'Attendance Rate' },
-            { n: '١٢', nEn: '12', l: 'حافظاً هذا العام', lEn: 'Huffaz This Year' },
+            { n: '١٢', nEn: '12', l: 'يحفظ في هذا العام', lEn: 'Huffaz This Year' },
             { n: '٩٨٪', nEn: '98%', l: 'رضا أولياء الأمور', lEn: 'Parent Satisfaction' },
-            { n: '٣', nEn: '3', l: 'لغات تدريس', lEn: 'Teaching Languages' },
+            { n: '٣', nEn: '3', l: 'مواضيع التدريس', lEn: 'Teaching Languages' },
           ].map((s, i) => (
             <div key={i} style={{ padding: '20px 12px', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 12 }}>
               <div style={{ fontFamily: 'var(--font-arabic-display)', fontSize: 32, fontWeight: 700, color: 'var(--accent)', lineHeight: 1 }}><T ar={s.n} en={s.nEn} /></div>
