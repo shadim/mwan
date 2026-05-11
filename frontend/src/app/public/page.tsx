@@ -119,7 +119,7 @@ export default function HomePage() {
                 <div style={{ height: '100%', width: '32%', background: 'var(--brass-300)', borderRadius: 999 }} />
               </div>
               <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
-                <Link href="/public/contact" style={{ background: 'var(--brass-300)', color: 'var(--green-900)', padding: '12px 24px', borderRadius: 8, fontFamily: 'var(--font-arabic-display)', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+                <Link href="/public/donate" style={{ background: 'var(--brass-300)', color: 'var(--green-900)', padding: '12px 24px', borderRadius: 8, fontFamily: 'var(--font-arabic-display)', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
                   <T ar="ساهم الآن" en="Donate Now" />
                 </Link>
               </div>

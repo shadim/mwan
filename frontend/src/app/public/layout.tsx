@@ -13,6 +13,7 @@ const NAV_LINKS = [
   // { ar: 'عنّا', en: 'About', href: '/public/about' },
   // { ar: 'البرامج', en: 'Programs', href: '/public/programs' },
   // { ar: 'الأخبار', en: 'News', href: '/public/news' },
+  { ar: 'ساهم الآن', en: 'Donate', href: '/public/donate' },
   { ar: 'تواصل', en: 'Contact', href: '/public/contact' },
 ];
 
